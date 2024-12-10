@@ -1,0 +1,145 @@
+
+
+.social-link {
+    text-decoration: none;
+    transition: transform 0.3s;
+  }
+  
+  .social-link:hover {
+    transform: scale(1.2);
+  }
+  
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+  
+  h5 {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  hr {
+    border: none;
+    height: 1px;
+    background-color: #fff;
+  }
+
+  /* Section bannière */
+.banner {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .banner .overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Assombrit l'image */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .banner h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  .banner p {
+    font-size: 1.5rem;
+  }
+  
+  /* Section des cartes */
+  .game-card {
+    background: linear-gradient(90deg, #1A0A53, #4C1C94);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-pill {
+    background-color: #6c2eb9; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 50px; /* Effet pillule */
+    padding: 10px 20px; /* Ajustez les espacements */
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .btn-pill:hover {
+    background-color: #4a1c88; /* Couleur plus foncée au survol */
+    transform: scale(1.1); /* Effet de zoom au survol */
+  }
+  
+  /* Section statistiques */
+  .stats-section h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .stats-section h3 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  /* Style général de la page */
+.login-page {
+    background-color: #c8b2d4;
+    min-height: 100vh;
+    padding-top: 50px;
+  }
+  
+  .form-title {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+  }
+  
+  /* Formulaires */
+  .login-form, .signup-form {
+    background-color: #6c2eb9;
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-form .form-control, .signup-form .form-control {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .login-form .form-control:focus, .signup-form .form-control:focus {
+    box-shadow: 0 0 5px rgba(108, 46, 185, 0.5);
+    border-color: #6c2eb9;
+  }
+  
+  /* Boutons */
+  button {
+    font-weight: bold;
+    background-color: #000;
+    border: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    background-color: #333;
+  }
+  
+  /* Ligne de séparation verticale */
+  .separator .vertical-line {
+    height: 200px;
+    width: 2px;
+    background-color: #000;
+    margin: auto;
+  }
