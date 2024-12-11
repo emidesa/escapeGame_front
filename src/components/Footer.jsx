@@ -6,7 +6,7 @@ import '../App.css';
 const Footer = () => {
     return <>
 
-    <footer style={{ background: 'linear-gradient(90deg, #1A0A53, #4C1C94)', color: '#FFF', padding: '20px 0' }}>
+    <footer style={{ background: 'linear-gradient( #1A0A53, #4D22B3, #9929BD)', color: '#FFF', padding: '20px 0' }}>
       <div className="container text-center">
         {/* logo */}
         <div className="mb-3">
