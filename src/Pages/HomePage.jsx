@@ -82,6 +82,74 @@ const HomePage = () => {
           </Row>
         </Container>
       </div>
+     
+    <div style={{ backgroundColor: '#1A0A53', color: 'white', padding: '20px' }}>
+      {/* Vos Souvenirs Section */}
+      <section style={{ textAlign: 'center', margin: '50px 0' }}>
+        <h2>Vos Souvenirs</h2>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '20px',
+            marginTop: '30px',
+          }}
+        >
+          <div>
+            <img
+              src="/path/to/image1.jpg" // Remplacez par le chemin de l'image 1
+              alt="Souvenir 1"
+              style={{ borderRadius: '15px', width: '300px', height: '200px' }}
+            />
+          </div>
+          <div>
+            <img
+              src="/path/to/image2.jpg" // Remplacez par le chemin de l'image 2
+              alt="Souvenir 2"
+              style={{ borderRadius: '15px', width: '300px', height: '200px' }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Encart Newsletter Section */}
+      <section
+        style={{
+          textAlign: 'center',
+          backgroundColor: '#A49DBF',
+          padding: '40px',
+          borderRadius: '15px',
+          margin: '50px auto',
+          maxWidth: '800px',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+        >
+          <h3 style={{ marginBottom: '20px' }}>Encart Newsletter</h3>
+          <input
+            type="text"
+            placeholder="Entrez votre email"
+            style={{
+              width: '60%',
+              padding: '10px',
+              borderRadius: '30px',
+              border: 'none',
+              outline: 'none',
+              textAlign: 'center',
+            }}
+          />
+        </div>
+      </section>
+    </div>
+ 
+
+
     </div>
     
     

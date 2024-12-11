@@ -136,6 +136,7 @@
     background-color: #333;
   }
   
+
   /* Ligne de séparation verticale */
   .separator .vertical-line {
     height: 200px;
@@ -143,3 +144,43 @@
     background-color: #000;
     margin: auto;
   }
+
+  .delivery-details {
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+  }
+  
+  .delivery-details .card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .contact-page {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #6a1b9a; /* Couleur de fond violet */
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .contact-page h1, .contact-page p {
+    color: #fff; /* Texte en blanc */
+  }
+  
+  .contact-page .card {
+    background-color: #4a148c; /* Couleur de fond de la carte */
+    color: #fff; /* Texte en blanc */
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .contact-page .btn-primary {
+    background-color: #8e24aa; /* Couleur du bouton */
+    border: none;
+  }
+  
+  .contact-page .bi-geo-alt {
+    color: #fff; /* Icône de localisation en blanc */
+  }
+  
