@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar expand="lg" style={{ background: 'linear-gradient(90deg, #1A0A53, #4C1C94)', padding: '10px' }}>
+      <Navbar expand="lg" style={{ background: 'linear-gradient(90deg, #1A0A53, #3A16B9)', padding: '10px' }}>
       <Container>
         {/* Logo */}
         <Navbar.Brand href="/" className="d-flex align-items-center">
