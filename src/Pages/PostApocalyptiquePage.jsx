@@ -2,10 +2,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import '../App.css'; 
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const PostApocalyptiquePage = () => {
+    const navigate = useNavigate();
     return <>
 
     <div style={{ backgroundColor: '#1A0A53', color: 'white', padding: '20px' }}>
@@ -132,8 +134,7 @@ const PostApocalyptiquePage = () => {
             cursor: 'pointer',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
             marginTop: '20px',
-          }}
-        >
+          }} onClick={() => navigate('/reservation')}>
           Réserver
         </button>
       </section>

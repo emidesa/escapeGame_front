@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import "../NavBar.css";
+import HorreurPage from '../Pages/HorreurPage';
 
 
 
@@ -35,17 +36,17 @@ const NavBar = () => {
         <Navbar.Collapse id="navbar-content">
           {/* Liens au centre */}
           <Nav className="mx-auto">
-            <Nav.Link href="#horror" style={{ color: '#FFF', margin: '0 10px' }}>Horreur</Nav.Link>
-            <Nav.Link href="#postapocalyptic" style={{ color: '#FFF', margin: '0 10px' }}>Post-Apocalyptique</Nav.Link>
-            <Nav.Link href="#home" style={{ color: '#FFF', margin: '0 10px' }}>A domicile</Nav.Link>
-            <Nav.Link href="#mini-games" style={{ color: '#FFF', margin: '0 10px' }}>Mini-jeux</Nav.Link>
-            <Nav.Link href="#contact" style={{ color: '#FFF', margin: '0 10px' }}>Contact</Nav.Link>
+            <Nav.Link href="#horror" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/horreur')}>Horreur</Nav.Link>
+            <Nav.Link href="#postapocalyptic" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/post-apocalyptique')}>Post-Apocalyptique</Nav.Link>
+            <Nav.Link href="#home" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/athome')}>A domicile</Nav.Link>
+            <Nav.Link href="#mini-games" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/mini-game')}>Mini-jeux</Nav.Link>
+            <Nav.Link href="#contact" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/contact')}>Contact</Nav.Link>
           </Nav>
 
           {/* Boutons à droite */}
           <div className="d-flex align-items-center">
-            <Button variant="outline-light" style={{ marginRight: '10px' }}>Sign in</Button>
-            <Button variant="outline-light" style={{ marginRight: '10px' }}>Register</Button>
+            <Button variant="outline-light" style={{ marginRight: '10px' }} onClick={() => navigate('/login')}>Sign in</Button>
+            <Button variant="outline-light" style={{ marginRight: '10px' }} onClick={() => navigate('/login')}>Register</Button>
             <Button variant="light" style={{
               borderRadius: '50%',
               width: '40px',

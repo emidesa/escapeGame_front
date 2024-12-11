@@ -24,7 +24,7 @@ function App() {
           <Route path='/contact' element={<ContactPage></ContactPage>}></Route>
           <Route path='/mini-game' element={<MiniGamePage></MiniGamePage>}></Route>
           <Route path='/athome' element={<AtHomePage></AtHomePage>}></Route>
-          <Route path='/Horreur' element={<HorreurPage></HorreurPage>}></Route>
+          <Route path='/horreur' element={<HorreurPage></HorreurPage>}></Route>
           <Route path='/post-apocalyptique' element={<PostApocalyptiquePage></PostApocalyptiquePage>}></Route>
           <Route path='/reservation' element={<ReservationPage></ReservationPage>}></Route>
          
