@@ -1,0 +1,13 @@
+.navbar-content {
+    background-color: #1A0A53; /* Votre couleur personnalisée */
+    color: #fff;
+    padding: 10px 20px;
+  }
+  
+  .navbar-content .nav-link {
+    color: #fff !important;
+  }
+  
+  .navbar-content .nav-link:hover {
+    color: #ccc !important;
+  }

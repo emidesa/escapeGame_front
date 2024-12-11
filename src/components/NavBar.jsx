@@ -1,10 +1,11 @@
 
 import { Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link, useNavigate } from "react-router-dom";
+import "../NavBar.css";
 
 
 
@@ -18,7 +19,7 @@ const NavBar = () => {
         {/* Logo */}
         <Navbar.Brand href="/" className="d-flex align-items-center">
           <img
-            src="src\assets\Design_sans_titre3.png" // Remplacez par le chemin de votre logo
+            src="src\assets\Design_sans_titre3.png" 
             alt="Logo"
             width="50"
             height="50"
