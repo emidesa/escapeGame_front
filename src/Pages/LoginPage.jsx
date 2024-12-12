@@ -1,69 +1,167 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import '../App.css';
+import customerService from '../../services/customerService';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-    return <>
+    const [loginEmail, setLoginEmail] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
+    const [signupFirstName, setSignupFirstName] = useState('');
+    const [signupLastName, setSignupLastName] = useState('');
+    const [signupEmail, setSignupEmail] = useState('');
+    const [signupPassword, setSignupPassword] = useState('');
+    const [signupTel, setSignupTel] = useState('');
+    const navigate = useNavigate();
+
+    // Gestionnaire pour ajouter un utilisateur
+    const addCustomer = async (e) => {
+        e.preventDefault(); // Empêche le rechargement de la page
+        console.log({
+          first_name: signupFirstName,
+          last_name: signupLastName,
+          email: signupEmail,
+          password: signupPassword,
+          phone: signupTel,
+      });
+        try {
+            // Appel au service pour ajouter un utilisateur
+            const response = await customerService.addCustomer({ 
+              first_name: signupFirstName, 
+              last_name: signupLastName, 
+              email: signupEmail, 
+              password: signupPassword, 
+              phone: signupTel
+            });
+            console.log('Utilisateur créé avec succès :');
+
+            // Redirection après succès
+            navigate(`/`);
+        } catch (err) {
+            console.error('Erreur lors de la création de l’utilisateur', err.response || err.message);
+        }
+    };
+
+    // Gestionnaire pour la connexion
+    const handleLogin = async (e) => {
+        e.preventDefault();
     
-    <div className="login-page">
-      <Container className="text-center py-5">
-        <h1 className="mb-3">Connexion</h1>
-        <p>Connectez-vous pour entrer dans l'univers mystérieux et résoudre les énigmes les plus captivantes !</p>
+        const loginData = {
+            loginEmail: loginEmail,  // email directement
+            loginPassword: loginPassword  // password directement
+        };
         
-        <Row className="justify-content-center align-items-center mt-5">
-          {/* Formulaire de connexion */}
-          <Col md={4} className="text-start">
-            <h3 className="form-title">Connexion</h3>
-            <Form className="login-form">
-              <Form.Group className="mb-3" controlId="formEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter your email" />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Enter your password" />
-              </Form.Group>
-              <Button variant="dark" type="submit" className="w-100">
-                Sign In
-              </Button>
-            </Form>
-          </Col>
-
-          {/* Ligne de séparation */}
-          <Col md={1} className="text-center separator">
-            <div className="vertical-line"></div>
-          </Col>
-
-          {/* Formulaire de création de compte */}
-          <Col md={4} className="text-start">
-            <h3 className="form-title">Créer son compte</h3>
-            <Form className="signup-form">
-              <Form.Group className="mb-3" controlId="formName">
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Enter your name" />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formSurname">
-                <Form.Label>Surname</Form.Label>
-                <Form.Control type="text" placeholder="Enter your surname" />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formEmailSignup">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter your email" />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formPasswordSignup">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Enter your password" />
-              </Form.Group>
-              <Button variant="dark" type="submit" className="w-100">
-                Submit
-              </Button>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+        try {
+            const response = await customerService.login(loginData);
+            console.log('Connexion réussie', response.data);
+            navigate('/');
+        } catch (err) {
+            console.error('Erreur lors de la connexion', err.response?.data || err.message);
+            alert(err.response?.data?.message || 'Une erreur est survenue');
+        }
+    };
     
-    </>;
-}
- 
+    
+
+    return (
+        <div className="login-page">
+            <Container className="text-center py-5">
+                <h1 className="mb-3">Connexion</h1>
+                <p>Connectez-vous pour entrer dans l'univers mystérieux et résoudre les énigmes les plus captivantes !</p>
+                
+                <Row className="justify-content-center align-items-center mt-5">
+                    {/* Formulaire de connexion */}
+                    <Col md={4} className="text-start">
+                        <h3 className="form-title">Connexion</h3>
+                        <Form className="login-form" onSubmit={handleLogin}>
+                            <Form.Group className="mb-3" controlId="formLoginEmail">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control 
+                                    type="email" 
+                                    placeholder="Enter your email" 
+                                    value={loginEmail} 
+                                    onChange={(e) => setLoginEmail(e.target.value)} 
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formLoginPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control 
+                                    type="password" 
+                                    placeholder="Enter your password" 
+                                    value={loginPassword} 
+                                    onChange={(e) => setLoginPassword(e.target.value)} 
+                                />
+                            </Form.Group>
+                            <Button variant="dark" type="submit" className="w-100">
+                                Sign In
+                            </Button>
+                        </Form>
+                    </Col>
+
+                    {/* Ligne de séparation */}
+                    <Col md={1} className="text-center separator">
+                        <div className="vertical-line"></div>
+                    </Col>
+
+                    {/* Formulaire de création de compte */}
+                    <Col md={4} className="text-start">
+                        <h3 className="form-title">Créer son compte</h3>
+                        <Form className="signup-form" onSubmit={addCustomer}>
+                            <Form.Group className="mb-3" controlId="formSignupFirstName">
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter your first name" 
+                                    value={signupFirstName} 
+                                    onChange={(e) => setSignupFirstName(e.target.value)} 
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formSignupLastName">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter your last name" 
+                                    value={signupLastName} 
+                                    onChange={(e) => setSignupLastName(e.target.value)} 
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formSignupEmail">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control 
+                                    type="email" 
+                                    placeholder="Enter your email" 
+                                    value={signupEmail} 
+                                    onChange={(e) => setSignupEmail(e.target.value)} 
+                                />
+
+</Form.Group>
+                            <Form.Group className="mb-3" controlId="formSignupTel">
+                                <Form.Label>Phone</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter your phone" 
+                                    value={signupTel} 
+                                    onChange={(e) => setSignupTel(e.target.value)} 
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formSignupPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control 
+                                    type="password" 
+                                    placeholder="Enter your password" 
+                                    value={signupPassword} 
+                                    onChange={(e) => setSignupPassword(e.target.value)} 
+                                />
+                            </Form.Group>
+                            <Button variant="dark" type="submit" className="w-100">
+                                Submit
+                            </Button>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
+        </div>
+    );
+};
+
 export default LoginPage;
