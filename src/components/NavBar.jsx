@@ -56,7 +56,7 @@ const NavBar = () => {
               alignItems: 'center',
               fontWeight: 'bold',
               color: '#4C1C94'
-            }}>
+            }} onClick={() => navigate('/Profil')}>
               P
             </Button>
            
