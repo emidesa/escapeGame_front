@@ -6,6 +6,7 @@ import Banner from "../components/Banner";
 import EscapeGameCards from '../components/EscapeGameCards';
 import MemoriesSection from '../components/MemoriesSection';
 import NewsLetterSection from '../components/NewsLetterSection';
+import backgroundImage from '../assets/HomePageBanner.webp'
 
 const HomePage = () => {
   const games = [
@@ -20,7 +21,7 @@ const memories = [
 ];
     return <>
       <Banner 
-        backgroundImage="/path/to/banner-image.jpg"
+        backgroundImage={ backgroundImage}
         title="Enigmes Évadées"
         subtitle="Plongez dans l'aventure !"
       />
