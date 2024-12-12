@@ -11,6 +11,8 @@ import MiniGamePage from './Pages/MiniGamePage'
 import AtHomePage from './Pages/AtHomePage'
 import PostApocalyptiquePage from './Pages/PostApocalyptiquePage'
 import HorreurPage from './Pages/HorreurPage'
+import ProfilPage from './Pages/ProfilPage'
+import AdminPage from './Pages/AdminPage'
 
 function App() {
 
@@ -27,6 +29,8 @@ function App() {
           <Route path='/horreur' element={<HorreurPage></HorreurPage>}></Route>
           <Route path='/post-apocalyptique' element={<PostApocalyptiquePage></PostApocalyptiquePage>}></Route>
           <Route path='/reservation' element={<ReservationPage></ReservationPage>}></Route>
+          <Route path='/profil' element={<ProfilPage></ProfilPage>}></Route>
+          <Route path='/admin' element={<AdminPage></AdminPage>}></Route>
          
         </Routes>
         <Footer></Footer>

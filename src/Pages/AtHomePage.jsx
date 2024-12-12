@@ -7,8 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const AtHomePage = () => {
     const navigate = useNavigate();
     return <>
-      <div style={{ backgroundColor: '#1A0A53', color: 'white', padding: '20px' }}>
-      {/* Banner Section */}
+      <div style={{  color: 'white', padding: '20px' }}>
       <section style={{ textAlign: 'center', marginBottom: '50px' }}>
         <img
           src="/path/to/banner.jpg" // Remplacez par le chemin de l'image de la bannière
