@@ -1,7 +1,8 @@
 .navbar-content {
-    background-color: #1A0A53; /* Votre couleur personnalisée */
-    color: #fff;
-    padding: 10px 20px;
+    position: fixed !important;
+    background-color: #1A0A53 !important; /* Votre couleur personnalisée */
+    color: #fff !important;
+    padding: 10px 20px !important;
   }
   
   .navbar-content .nav-link {
