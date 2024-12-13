@@ -4,6 +4,9 @@ body, html {
 }
 
 
+
+
+
 .navbar-content {
   position: fixed;
   background-color: #1A0A53; /* Votre couleur personnalisée */
@@ -208,18 +211,21 @@ body, html {
 
   /* Style général de la page */
 .login-page {
-    background-color: #c8b2d4;
+    background-color: #AAA1C8;
     min-height: 100vh;
     padding-top: 50px;
   }
   
   .form-title {
     font-weight: bold;
-    color: #000;
+    color: #192942;
     margin-bottom: 20px;
   }
   
   /* Formulaires */
+  .mb-3 {
+    color: #192942;
+  }
   .login-form, .signup-form {
     background-color: #6c2eb9;
     padding: 20px;
@@ -276,13 +282,13 @@ body, html {
   .contact-page {
     font-family: Arial, sans-serif;
     color: #fff;
-    background-color: #6a1b9a; /* Couleur de fond violet */
+    background-color: #AAA1C8; /* Couleur de fond violet */
     padding: 20px;
-    border-radius: 5px;
+    width: auto;
   }
   
   .contact-page h1, .contact-page p {
-    color: #fff; /* Texte en blanc */
+    color: #192942; /* Texte en blanc */
   }
   
   .contact-page .card {
