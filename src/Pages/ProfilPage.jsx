@@ -7,7 +7,7 @@ const ProfilPage = () => {
     return <>
 
     <div style={{ backgroundColor: '#aaa1c8', minHeight: '100vh', padding: '20px' }}>
-      <h1 style={{ textAlign: 'center', color: '#29205E', marginBottom: '60px' }}>Votre profil</h1>
+      <h1 style={{ textAlign: 'center', color: '#192942', marginBottom: '60px', fontWeight: '700', marginTop:'30px' }}>Votre profil</h1>
 
       <div
         style={{
@@ -31,7 +31,7 @@ const ProfilPage = () => {
             color: 'white',
             fontSize: '2rem',
             marginBottom: '-40px',
-            marginRight: '260px',
+           
             border: '2px solid black',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
             position: 'absolute',
@@ -44,10 +44,10 @@ const ProfilPage = () => {
         {/* Profile Form */}
         <form
           style={{
-            backgroundColor: '#4A2B8C',
+            backgroundColor: '#4D22B3',
             padding: '30px',
             borderRadius: '15px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+            boxShadow: '15px -15px 4px 0px rgba(0, 0, 0, 0.25)',
             width: '320px',
             marginTop: '40px',
           }}
@@ -56,9 +56,10 @@ const ProfilPage = () => {
             <label style={{ color: 'white', display: 'block', marginBottom: '5px' }}>Nom</label>
             <input
               type="text"
+              placeholder="Entrez votre Nom"
               style={{
                 width: '100%',
-                padding: '8px 15px',
+                padding: '5px 10px',
                 borderRadius: '20px',
                 border: 'none',
                 outline: 'none',
@@ -70,9 +71,10 @@ const ProfilPage = () => {
             <label style={{ color: 'white', display: 'block', marginBottom: '5px' }}>Prénom</label>
             <input
               type="text"
+              placeholder="Entrez votre Prénom"
               style={{
                 width: '100%',
-                padding: '8px 15px',
+                padding: '5px 10px',
                 borderRadius: '20px',
                 border: 'none',
                 outline: 'none',
@@ -84,9 +86,10 @@ const ProfilPage = () => {
             <label style={{ color: 'white', display: 'block', marginBottom: '5px' }}>Adresse</label>
             <input
               type="text"
+              placeholder="Entrez votre Adresse"
               style={{
                 width: '100%',
-                padding: '8px 15px',
+                padding: '5px 10px',
                 borderRadius: '20px',
                 border: 'none',
                 outline: 'none',
@@ -98,9 +101,10 @@ const ProfilPage = () => {
             <label style={{ color: 'white', display: 'block', marginBottom: '5px' }}>Téléphone</label>
             <input
               type="text"
+              placeholder="Entrez votre Numéro"
               style={{
                 width: '100%',
-                padding: '8px 15px',
+                padding: '5px 10px',
                 borderRadius: '20px',
                 border: 'none',
                 outline: 'none',
@@ -112,9 +116,10 @@ const ProfilPage = () => {
             <label style={{ color: 'white', display: 'block', marginBottom: '5px' }}>Email</label>
             <input
               type="email"
+              placeholder="Entrez votre Email"
               style={{
                 width: '100%',
-                padding: '8px 15px',
+                padding: '5px 10px',
                 borderRadius: '20px',
                 border: 'none',
                 outline: 'none',
@@ -126,7 +131,7 @@ const ProfilPage = () => {
             <button
               type="button"
               style={{
-                padding: '10px 20px',
+                padding: '8px 15px',
                 backgroundColor: '#6A2C9B',
                 color: 'white',
                 borderRadius: '20px',
@@ -141,7 +146,7 @@ const ProfilPage = () => {
             <button
               type="submit"
               style={{
-                padding: '10px 20px',
+                padding: '8px 15px',
                 backgroundColor: '#29205E',
                 color: 'white',
                 borderRadius: '20px',

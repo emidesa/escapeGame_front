@@ -66,8 +66,8 @@ const LoginPage = () => {
     return (
         <div className="login-page">
             <Container className="text-center py-5">
-                <h1 className="mb-3">Connexion</h1>
-                <p>Connectez-vous pour entrer dans l'univers mystérieux et résoudre les énigmes les plus captivantes !</p>
+                <h1 className="mb-2">Connexion</h1>
+                <p className='mb-4'>Connectez-vous pour entrer dans l'univers mystérieux et résoudre les énigmes les plus captivantes !</p>
                 
                 <Row className="justify-content-center align-items-center mt-5">
                     {/* Formulaire de connexion */}
@@ -78,22 +78,22 @@ const LoginPage = () => {
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control 
                                     type="email" 
-                                    placeholder="Enter your email" 
+                                    placeholder="Entrez votre email" 
                                     value={loginEmail} 
                                     onChange={(e) => setLoginEmail(e.target.value)} 
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formLoginPassword">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label>Mot de passe</Form.Label>
                                 <Form.Control 
                                     type="password" 
-                                    placeholder="Enter your password" 
+                                    placeholder="Entrez votre Mot de passe" 
                                     value={loginPassword} 
                                     onChange={(e) => setLoginPassword(e.target.value)} 
                                 />
                             </Form.Group>
                             <Button variant="dark" type="submit" className="w-100">
-                                Sign In
+                                Connexion
                             </Button>
                         </Form>
                     </Col>
@@ -108,19 +108,19 @@ const LoginPage = () => {
                         <h3 className="form-title">Créer son compte</h3>
                         <Form className="signup-form" onSubmit={addCustomer}>
                             <Form.Group className="mb-3" controlId="formSignupFirstName">
-                                <Form.Label>Name</Form.Label>
+                                <Form.Label>Nom</Form.Label>
                                 <Form.Control 
                                     type="text" 
-                                    placeholder="Enter your first name" 
+                                    placeholder="Entrez votre nom" 
                                     value={signupFirstName} 
                                     onChange={(e) => setSignupFirstName(e.target.value)} 
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formSignupLastName">
-                                <Form.Label>Last Name</Form.Label>
+                                <Form.Label>Prénom</Form.Label>
                                 <Form.Control 
                                     type="text" 
-                                    placeholder="Enter your last name" 
+                                    placeholder="Entrez votre Prénom" 
                                     value={signupLastName} 
                                     onChange={(e) => setSignupLastName(e.target.value)} 
                                 />
@@ -129,32 +129,32 @@ const LoginPage = () => {
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control 
                                     type="email" 
-                                    placeholder="Enter your email" 
+                                    placeholder="Entrez votre email" 
                                     value={signupEmail} 
                                     onChange={(e) => setSignupEmail(e.target.value)} 
                                 />
 
 </Form.Group>
                             <Form.Group className="mb-3" controlId="formSignupTel">
-                                <Form.Label>Phone</Form.Label>
+                                <Form.Label>Téléphone</Form.Label>
                                 <Form.Control 
                                     type="text" 
-                                    placeholder="Enter your phone" 
+                                    placeholder="Entrez votre Numéro" 
                                     value={signupTel} 
                                     onChange={(e) => setSignupTel(e.target.value)} 
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formSignupPassword">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label>Mot de Passe</Form.Label>
                                 <Form.Control 
                                     type="password" 
-                                    placeholder="Enter your password" 
+                                    placeholder="Entrez votre Mot de Passe" 
                                     value={signupPassword} 
                                     onChange={(e) => setSignupPassword(e.target.value)} 
                                 />
                             </Form.Group>
                             <Button variant="dark" type="submit" className="w-100">
-                                Submit
+                                Inscription
                             </Button>
                         </Form>
                     </Col>

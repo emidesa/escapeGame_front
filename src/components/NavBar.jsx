@@ -1,5 +1,5 @@
 
-import { Button } from 'react-bootstrap';
+import { Button, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -41,12 +41,23 @@ const NavBar = () => {
             <Nav.Link href="#home" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/athome')}>A domicile</Nav.Link>
             <Nav.Link href="#mini-games" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/mini-game')}>Mini-jeux</Nav.Link>
             <Nav.Link href="#contact" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/contact')}>Contact</Nav.Link>
-          </Nav>
+           <NavDropdown title="Escape" id="basic-nav-dropdown" >
+              <NavDropdown.Item href="#egype"  onClick={() => navigate('/egypteantique')}>Égypte antique</NavDropdown.Item>
+              <NavDropdown.Item href="#science" onClick={() => navigate('/sciencefiction')}>Science-fiction</NavDropdown.Item>
+              <NavDropdown.Item href="#voyage"  onClick={() => navigate('/voyagetemporel')}>Voyage temporel</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Magie</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Fantastique</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Mystère</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Aventure sous-marine</NavDropdown.Item>
+              </NavDropdown>
+              </Nav>
+          
+         
 
           {/* Boutons à droite */}
           <div className="d-flex align-items-center">
-            <Button variant="outline-light" style={{ marginRight: '10px' }} onClick={() => navigate('/login')}>Sign in</Button>
-            <Button variant="outline-light" style={{ marginRight: '10px' }} onClick={() => navigate('/login')}>Register</Button>
+            <Button variant="outline-light" style={{ marginRight: '10px' }} onClick={() => navigate('/login')}>Connectez-vous</Button>
+            <Button variant="outline-light" style={{ marginRight: '10px' }} onClick={() => navigate('/login')}>Inscription</Button>
             <Button variant="light" style={{
               borderRadius: '50%',
               width: '40px',

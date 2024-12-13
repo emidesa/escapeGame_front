@@ -13,6 +13,9 @@ import PostApocalyptiquePage from './Pages/PostApocalyptiquePage'
 import HorreurPage from './Pages/HorreurPage'
 import ProfilPage from './Pages/ProfilPage'
 import AdminPage from './Pages/AdminPage'
+import EgypteAntique from './Pages/EgypteAntiquePage'
+import ScienceFiction from './Pages/ScienceFictionPage'
+import VoyageTemporel from './Pages/VoyageTemporelPage'
 
 function App() {
 
@@ -31,6 +34,9 @@ function App() {
           <Route path='/reservation' element={<ReservationPage></ReservationPage>}></Route>
           <Route path='/profil' element={<ProfilPage></ProfilPage>}></Route>
           <Route path='/admin' element={<AdminPage></AdminPage>}></Route>
+          <Route path='/egypteantique' element={<EgypteAntique></EgypteAntique>}></Route>
+          <Route path='/sciencefiction' element={<ScienceFiction></ScienceFiction>}></Route>
+          <Route path='/voyagetemporel' element={<VoyageTemporel></VoyageTemporel>}></Route>
          
         </Routes>
         <Footer></Footer>
