@@ -16,12 +16,19 @@
 
 
 
+
+body, html {
+  overflow-x: hidden;
+}
+
+
 /* components/Banner.css */
 .banner {
   background-size: cover;
   background-position: center;
   height: 400px;
   position: relative;
+  margin-bottom: 0;
 }
 
 .banner-overlay {
@@ -48,10 +55,11 @@
 
 /* components/escapeGameCardsSection.css */
 .game-cards-section {
-  margin: 50px 0;
+  margin: 0;
 }
 
 .game-card {
+  margin-top: 100px;
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
