@@ -26,11 +26,11 @@ const memories = [
         subtitle="Plongez dans l'aventure !"
       />
       
-      <div style={{ backgroundColor: "#1A0A53" }}>
+      <Container fluid style={{ backgroundColor: "#1A0A53", padding: '0', maxWidth: '100%' }}>
         <EscapeGameCards games={games} />
         <MemoriesSection memories={memories}/>
         <NewsLetterSection />
-      </div>
+      </Container>
 
     </>;
 }
