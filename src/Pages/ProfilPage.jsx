@@ -6,6 +6,7 @@ import '../App.css';
 const ProfilPage = () => {
     return <>
 
+
     <div style={{ backgroundColor: '#aaa1c8', minHeight: '100vh', padding: '20px' }}>
       <h1 style={{ textAlign: 'center', color: '#192942', marginBottom: '60px', fontWeight: '700', marginTop:'30px' }}>Votre profil</h1>
 

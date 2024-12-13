@@ -30,6 +30,12 @@ body, html {
   overflow-x: hidden;
 }
 
+
+body, html {
+  overflow-x: hidden;
+}
+
+
 /* components/Banner.css */
 .banner {
   background-size: cover;

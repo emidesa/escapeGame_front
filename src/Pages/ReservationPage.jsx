@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { } from "../App.css";
 
+
 const Reservation = () => {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
@@ -16,6 +17,8 @@ const Reservation = () => {
   const [reservations, setReservations] = useState([]);
 
   const availableTimes = ['10:00', '12:00', '14:00', '16:00', '18:00'];
+
+
 
   const daysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
   const startDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
@@ -53,6 +56,7 @@ const Reservation = () => {
       [e.target.name]: e.target.value,
     });
   };
+
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -182,5 +186,13 @@ const Reservation = () => {
     </div>
   );
 };
+
+
+
+    
+    
+    </>;
+}
+ 
 
 export default Reservation;
