@@ -38,7 +38,7 @@ const NavBar = () => {
           <Nav className="mx-auto">
             <Nav.Link href="#horror" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/horreur')}>Horreur</Nav.Link>
             <Nav.Link href="#postapocalyptic" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/post-apocalyptique')}>Post-Apocalyptique</Nav.Link>
-            <Nav.Link href="#home" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/athome')}>A domicile</Nav.Link>
+            <Nav.Link href="#enquete" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('enquetepage')}>Enquête</Nav.Link>
             <Nav.Link href="#mini-games" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/mini-game')}>Mini-jeux</Nav.Link>
             <Nav.Link href="#contact" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/contact')}>Contact</Nav.Link>
            <NavDropdown title="Escape" id="basic-nav-dropdown" >

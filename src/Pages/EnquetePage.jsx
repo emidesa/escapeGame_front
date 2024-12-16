@@ -4,7 +4,7 @@ import '../App.css';
 import { useNavigate } from 'react-router-dom';
 
 
-const AtHomePage = () => {
+const EnquetePage = () => {
     const navigate = useNavigate();
     return <>
       <div style={{  color: 'white', padding: '20px' }}>
@@ -226,4 +226,4 @@ const AtHomePage = () => {
     </>;
 }
  
-export default AtHomePage;
+export default EnquetePage;

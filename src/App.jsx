@@ -8,7 +8,6 @@ import LoginPage from './Pages/LoginPage'
 import ReservationPage from './Pages/ReservationPage'
 import ContactPage from './Pages/ContactPage'
 import MiniGamePage from './Pages/MiniGamePage'
-import AtHomePage from './Pages/AtHomePage'
 import PostApocalyptiquePage from './Pages/PostApocalyptiquePage'
 import HorreurPage from './Pages/HorreurPage'
 import ProfilPage from './Pages/ProfilPage'
@@ -21,6 +20,7 @@ import WowPage from './Pages/WowPage'
 import LolPage from './Pages/LolPage'
 import MysterePage from './Pages/MysterePage'
 import MecaniquePage from './Pages/MecaniquePage'
+import EnquetePage from './Pages/EnquetePage'
 
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
           <Route path='/login' element={<LoginPage></LoginPage>}></Route>
           <Route path='/contact' element={<ContactPage></ContactPage>}></Route>
           <Route path='/mini-game' element={<MiniGamePage></MiniGamePage>}></Route>
-          <Route path='/athome' element={<AtHomePage></AtHomePage>}></Route>
+          <Route path='/enquetepage' element={<EnquetePage></EnquetePage>}></Route>
           <Route path='/horreur' element={<HorreurPage></HorreurPage>}></Route>
           <Route path='/post-apocalyptique' element={<PostApocalyptiquePage></PostApocalyptiquePage>}></Route>
           <Route path='/reservation' element={<ReservationPage></ReservationPage>}></Route>
