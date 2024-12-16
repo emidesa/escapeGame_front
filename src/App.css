@@ -1,3 +1,9 @@
+
+body, html {
+  overflow-x: hidden;
+}
+
+
 .navbar-content {
   position: fixed;
   background-color: #1A0A53; /* Votre couleur personnalisée */
@@ -17,6 +23,7 @@
 color: #fff;
 
 }
+
 
 .navbar-nav .dropdown-menu {
   color: #fff; /* Couleur de fond */
@@ -157,41 +164,7 @@ body, html {
     background-color: #fff;
   }
 
-  /* Section bannière */
-.banner {
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-  
-  .banner .overlay {
-    background-color: rgba(0, 0, 0, 0.5); /* Assombrit l'image */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    text-align: center;
-  }
-  
-  .banner h1 {
-    font-size: 3rem;
-    font-weight: bold;
-  }
-  
-  .banner p {
-    font-size: 1.5rem;
-  }
-  
-  /* Section des cartes */
-  .game-card {
-    background: linear-gradient(90deg, #1A0A53, #4C1C94);
-    color: #fff;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+
   
   .btn-pill {
     background-color: #6c2eb9; /* Couleur de fond */
@@ -224,6 +197,7 @@ body, html {
   /* Style général de la page */
 .login-page {
     background-color: #AAA1C8;
+
     min-height: 100vh;
     padding-top: 50px;
   }
