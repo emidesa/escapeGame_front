@@ -59,10 +59,10 @@ const ContactPage = () => {
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formName">
-                  <Form.Label>Name</Form.Label>
+                  <Form.Label>Nom</Form.Label>
                   <Form.Control 
                     type="text" 
-                    placeholder="Enter your name" 
+                    placeholder="Entrez votre nom" 
                     name="name"  
                     value={formData.name}
                     onChange={handleInputChange}
@@ -73,7 +73,7 @@ const ContactPage = () => {
                   <Form.Label>Email</Form.Label>
                   <Form.Control 
                     type="email" 
-                    placeholder="Enter your email" 
+                    placeholder="Entrez votre email" 
                     name="email" 
                     value={formData.email}
                     onChange={handleInputChange}
@@ -84,14 +84,14 @@ const ContactPage = () => {
                   <Form.Control 
                     as="textarea" 
                     rows={3} 
-                    placeholder="Enter your message" 
+                    placeholder="Entrez votre message" 
                     name="message"  
                     value={formData.message}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
                 <Button variant="primary" type="submit" className="mt-3">
-                  Submit
+                  Envoyez
                 </Button>
               </Form>
             </Card.Body>

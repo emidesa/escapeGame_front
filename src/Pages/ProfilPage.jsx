@@ -126,7 +126,7 @@ const ProfilPage = () => {
                     marginBottom: '-40px',
                     marginRight: '260px',
                     border: '2px solid black',
-                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+                    boxShadow: '15px -15px 4px 0px rgba(0, 0, 0, 0.25)',
                     position: 'absolute',
                     top: '-20px',
                 }}>
@@ -137,7 +137,7 @@ const ProfilPage = () => {
                     backgroundColor: '#4A2B8C',
                     padding: '30px',
                     borderRadius: '15px',
-                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+                    boxShadow: '15px -15px 4px 0px rgba(0, 0, 0, 0.25)',
                     width: '320px',
                     marginTop: '40px',
                 }}>
@@ -282,22 +282,22 @@ const ProfilPage = () => {
                                     Supprimer
                                 </button>
                                  <button
-                onClick={handleLogout}
-                style={{
-                    padding: '10px 20px',
-                    backgroundColor: '#29205E',
-                    color: 'white',
-                    borderRadius: '20px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                    position: 'absolute',
-                    top: '30px',
-                    right: '30px',
-                }}
-            >
-                Déconnexion
-            </button>
+                                 onClick={handleLogout}
+                                 style={{
+                                 padding: '10px 20px',
+                                  backgroundColor: '#29205E',
+                                  color: 'white',
+                                 borderRadius: '20px',
+                                 border: 'none',
+                                    cursor: 'pointer',
+                                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+                                   position: 'absolute',
+                                 top: '30px',
+                                 right: '30px',
+                                 }}
+                                   >
+                                    Déconnexion
+                                 </button>
                             </>
                         )}
                     </div>
