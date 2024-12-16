@@ -18,7 +18,7 @@ const EscapeGameCards = ({ games }) => {
                 </div>
                 <div className="game-card-button">
                   <Button variant="primary" className="btn-pill">
-                    Voir plus
+                    Je découvre ! 
                   </Button>
                 </div>
               </div>

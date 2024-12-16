@@ -1,0 +1,33 @@
+.carousel-section {
+    margin-top: 100px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .carousel-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Effet de survol */
+  .carousel-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style de l'image pour l'adapter dans la carte */
+  .carousel-image {
+    width: 490px;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* Réduire la taille de l'image pour la centrer dans la carte */
+  .carousel-item {
+    text-align: center;
+  }
+  

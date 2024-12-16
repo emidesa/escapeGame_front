@@ -6,7 +6,7 @@ body, html {
 .navbar-content {
   position: fixed;
   background-color: #1A0A53; /* Votre couleur personnalisée */
-  color: #fff;
+  color: #FFF8F0;
   padding: 10px 20px;
 }
 
@@ -19,14 +19,14 @@ body, html {
 }
 
 #basic-nav-dropdown{
-color: #fff;
+color: #FFF8F0;
 
 }
 
 
 .navbar-nav .dropdown-menu {
-  color: #fff; /* Couleur de fond */
-  border-radius: 5px; /* Coins arrondis */
+  color: #fff; 
+  border-radius: 5px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre */
   border: none;
 }
@@ -36,7 +36,8 @@ color: #fff;
 .banner {
   background-size: cover;
   background-position: center;
-  height: 400px;
+  background-repeat: no-repeat;
+  height: 100vh;
   position: relative;
   margin-bottom: 0;
 }
@@ -47,19 +48,20 @@ color: #fff;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #FFF8F0;
   backdrop-filter: blur(2px);
   text-align: center;
 }
 
 .banner-overlay h1 {
-  font-size: 3em;
+  font-size: 4em;
   margin: 0;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 1);
+  text-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
 }
 
 .banner-overlay p {
-  font-size: 1.2em;
+  color: #FFF8F0;
+  font-size: 2em;
   margin-top: 10px;
 }
 
@@ -98,12 +100,12 @@ color: #fff;
 }
 
 .game-card-title {
-  color: #fff;
+  color: #FFF8F0;
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
   padding: 10px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.6);
 }
 
 .game-card-button {
@@ -181,13 +183,18 @@ color: #fff;
 
   
   .btn-pill {
+    transition: background-color 0.3s ease;
     background: linear-gradient(to right, #9929BD, #701E8A, #461357);
-    color: #fff; 
-    border: none; /* Pas de bordure */
-    border-radius: 20px; /* Effet pillule */
-    padding: 8px 20px; /* Ajustez les espacements */
+    color: #FFF8F0;
+    border: none;
+    width: 150px;
+    padding: 10px 20px;
+    font-size: 1em;
     font-weight: bold;
-    transition: background-color 0.7s ease-in-out;
+    box-shadow: 0px 4px 4px 0px #000000;
+    border-radius: 25px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
   .btn-pill:hover {
