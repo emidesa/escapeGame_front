@@ -36,6 +36,7 @@ body, html {
 }
 
 
+
 /* components/Banner.css */
 .banner {
   background-size: cover;
@@ -222,7 +223,7 @@ body, html {
 
   /* Style général de la page */
 .login-page {
-    background-color: #aaa1c8;
+    background-color: #AAA1C8;
     min-height: 100vh;
     padding-top: 50px;
   }
@@ -240,13 +241,16 @@ body, html {
   
   .form-title {
     font-weight: bold;
-    color: #000;
+    color: #192942;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
   }
   
   /* Formulaires */
+  .mb-3 {
+    color: #192942;
+  }
   .login-form, .signup-form {
     background-color: #4d22b3;
     padding: 20px;
@@ -306,9 +310,9 @@ body, html {
   .contact-page {
     font-family: Arial, sans-serif;
     color: #fff;
-    background-color: #aaa1c8; /* Couleur de fond violet */
+    background-color: #AAA1C8; /* Couleur de fond violet */
     padding: 20px;
-    border-radius: 5px;
+    width: auto;
   }
   
   .contact-page h1, .contact-page p {

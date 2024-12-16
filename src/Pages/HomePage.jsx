@@ -26,7 +26,7 @@ const memories = [
         subtitle="Plongez dans l'aventure !"
       />
       
-      <Container fluid style={{ backgroundColor: "#1A0A53", padding: '0', maxWidth: '100%' }}>
+      <Container fluid style={{ backgroundColor: "#1A0A53", margin: '0',padding: '0', maxWidth: '100%' }}>
         <EscapeGameCards games={games} />
         <MemoriesSection memories={memories}/>
         <NewsLetterSection />

@@ -16,6 +16,8 @@ import AdminPage from './Pages/AdminPage'
 import EgypteAntique from './Pages/EgypteAntiquePage'
 import ScienceFiction from './Pages/ScienceFictionPage'
 import VoyageTemporel from './Pages/VoyageTemporelPage'
+import ProfilPageAdmin from './Pages/ProfilPageAdmin'
+
 
 function App() {
 
@@ -37,6 +39,7 @@ function App() {
           <Route path='/egypteantique' element={<EgypteAntique></EgypteAntique>}></Route>
           <Route path='/sciencefiction' element={<ScienceFiction></ScienceFiction>}></Route>
           <Route path='/voyagetemporel' element={<VoyageTemporel></VoyageTemporel>}></Route>
+          <Route path='/profilAdmin' element={<ProfilPageAdmin></ProfilPageAdmin>}></Route>
          
         </Routes>
         <Footer></Footer>
