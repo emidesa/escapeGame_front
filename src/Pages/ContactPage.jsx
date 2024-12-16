@@ -44,7 +44,7 @@ const ContactPage = () => {
   };
     
   return (
-    <Container className="contact-page">
+    <div className="contact-page">
       <Row>
         <Col>
           <h1 className="text-center">Contacts</h1>
@@ -103,7 +103,7 @@ const ContactPage = () => {
           <i className="bi bi-geo-alt" style={{ fontSize: '2rem' }}></i>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 
