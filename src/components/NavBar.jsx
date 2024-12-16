@@ -40,15 +40,15 @@ const NavBar = () => {
           <NavDropdown.Item href="#magie"  onClick={() => navigate('/magie')}>Magie</NavDropdown.Item>
               <NavDropdown.Item href="#science" onClick={() => navigate('/sciencefiction')}>Science-fiction</NavDropdown.Item>
               <NavDropdown.Item href="#fantasque"  onClick={() => navigate('/fantastique')}>Fantastique</NavDropdown.Item>
-            
+             <NavDropdown.Item href="#horror" onClick={() => navigate('/horreur')}>Horreur</NavDropdown.Item>
+              <NavDropdown.Item href="#postapocalyptic" onClick={() => navigate('/post-apocalyptique')}>Post-Apocalyptique</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Nos Escapes Game à domicile" id="basic-nav-dropdown" >
           <NavDropdown.Item href="#wow" onClick={() => navigate('/wowpage')}>WoW (World of Wafcraft)</NavDropdown.Item>
               <NavDropdown.Item href="#lol" onClick={() => navigate('/lolpage')}>LoL (League of Legends)</NavDropdown.Item>
               <NavDropdown.Item href="#mystere" onClick={() => navigate('/mysterepage')}>Mystère</NavDropdown.Item>
               <NavDropdown.Item href="#mecanique" onClick={() => navigate('/mecaniquepage')}>Mécanique</NavDropdown.Item> 
-              <NavDropdown.Item href="#horror" onClick={() => navigate('/horreur')}>Horreur</NavDropdown.Item>
-              <NavDropdown.Item href="#postapocalyptic" onClick={() => navigate('/post-apocalyptique')}>Post-Apocalyptique</NavDropdown.Item>
+             
               <NavDropdown.Item href="#enquete" onClick={() => navigate('enquetepage')}>Enquête</NavDropdown.Item>
           </NavDropdown>
             
