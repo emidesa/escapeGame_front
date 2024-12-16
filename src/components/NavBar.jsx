@@ -36,20 +36,25 @@ const NavBar = () => {
         <Navbar.Collapse id="navbar-content">
           {/* Liens au centre */}
           <Nav className="mx-auto">
-            <Nav.Link href="#horror" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/horreur')}>Horreur</Nav.Link>
-            <Nav.Link href="#postapocalyptic" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/post-apocalyptique')}>Post-Apocalyptique</Nav.Link>
-            <Nav.Link href="#enquete" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('enquetepage')}>Enquête</Nav.Link>
-            <Nav.Link href="#mini-games" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/mini-game')}>Mini-jeux</Nav.Link>
-            <Nav.Link href="#contact" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/contact')}>Contact</Nav.Link>
-           <NavDropdown title="Escape" id="basic-nav-dropdown" >
-              <NavDropdown.Item href="#magie"  onClick={() => navigate('/magie')}>Magie</NavDropdown.Item>
+          <NavDropdown title="Nos Escapes Game en salle" id="basic-nav-dropdown" >
+          <NavDropdown.Item href="#magie"  onClick={() => navigate('/magie')}>Magie</NavDropdown.Item>
               <NavDropdown.Item href="#science" onClick={() => navigate('/sciencefiction')}>Science-fiction</NavDropdown.Item>
               <NavDropdown.Item href="#fantasque"  onClick={() => navigate('/fantastique')}>Fantastique</NavDropdown.Item>
-              <NavDropdown.Item href="#wow" onClick={() => navigate('/wowpage')}>WoW (World of Wafcraft)</NavDropdown.Item>
+            
+          </NavDropdown>
+          <NavDropdown title="Nos Escapes Game à domicile" id="basic-nav-dropdown" >
+          <NavDropdown.Item href="#wow" onClick={() => navigate('/wowpage')}>WoW (World of Wafcraft)</NavDropdown.Item>
               <NavDropdown.Item href="#lol" onClick={() => navigate('/lolpage')}>LoL (League of Legends)</NavDropdown.Item>
               <NavDropdown.Item href="#mystere" onClick={() => navigate('/mysterepage')}>Mystère</NavDropdown.Item>
-              <NavDropdown.Item href="#mecanique" onClick={() => navigate('/mecaniquepage')}>Mécanique</NavDropdown.Item>
-              </NavDropdown>
+              <NavDropdown.Item href="#mecanique" onClick={() => navigate('/mecaniquepage')}>Mécanique</NavDropdown.Item> 
+              <NavDropdown.Item href="#horror" onClick={() => navigate('/horreur')}>Horreur</NavDropdown.Item>
+              <NavDropdown.Item href="#postapocalyptic" onClick={() => navigate('/post-apocalyptique')}>Post-Apocalyptique</NavDropdown.Item>
+              <NavDropdown.Item href="#enquete" onClick={() => navigate('enquetepage')}>Enquête</NavDropdown.Item>
+          </NavDropdown>
+            
+            <Nav.Link href="#mini-games" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/mini-game')}>Mini-jeux</Nav.Link>
+            <Nav.Link href="#contact" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/contact')}>Contact</Nav.Link>
+           
               </Nav>
           
          

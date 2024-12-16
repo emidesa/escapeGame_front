@@ -33,17 +33,6 @@ color: #fff;
 }
 
 
-body, html {
-  overflow-x: hidden;
-}
-
-
-body, html {
-  overflow-x: hidden;
-}
-
-
-
 /* components/Banner.css */
 .banner {
   background-size: cover;
@@ -290,7 +279,13 @@ body, html {
   }
   
   .contact-page h1, .contact-page p {
-    color: black; /* Texte en blanc */
+    color: #192942;
+    font-weight: bold;
+  }
+
+  .contact-page p {
+    font-weight: 600;
+
   }
   
   .contact-page .card {
@@ -303,7 +298,10 @@ body, html {
   .contact-page .btn-primary {
     background-color: #8e24aa; /* Couleur du bouton */
     border: none;
+    
   }
+
+  
   
   .contact-page .bi-geo-alt {
     color: #fff; /* Icône de localisation en blanc */
