@@ -42,13 +42,13 @@ const NavBar = () => {
             <Nav.Link href="#mini-games" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/mini-game')}>Mini-jeux</Nav.Link>
             <Nav.Link href="#contact" style={{ color: '#FFF', margin: '0 10px' }} onClick={() => navigate('/contact')}>Contact</Nav.Link>
            <NavDropdown title="Escape" id="basic-nav-dropdown" >
-              <NavDropdown.Item href="#egype"  onClick={() => navigate('/egypteantique')}>Égypte antique</NavDropdown.Item>
+              <NavDropdown.Item href="#magie"  onClick={() => navigate('/magie')}>Magie</NavDropdown.Item>
               <NavDropdown.Item href="#science" onClick={() => navigate('/sciencefiction')}>Science-fiction</NavDropdown.Item>
-              <NavDropdown.Item href="#voyage"  onClick={() => navigate('/voyagetemporel')}>Voyage temporel</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Magie</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Fantastique</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Mystère</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Aventure sous-marine</NavDropdown.Item>
+              <NavDropdown.Item href="#fantasque"  onClick={() => navigate('/fantastique')}>Fantastique</NavDropdown.Item>
+              <NavDropdown.Item href="#wow" onClick={() => navigate('/wowpage')}>WoW (World of Wafcraft)</NavDropdown.Item>
+              <NavDropdown.Item href="#lol" onClick={() => navigate('/lolpage')}>LoL (League of Legends)</NavDropdown.Item>
+              <NavDropdown.Item href="#mystere" onClick={() => navigate('/mysterepage')}>Mystère</NavDropdown.Item>
+              <NavDropdown.Item href="#mecanique" onClick={() => navigate('/mecaniquepage')}>Mécanique</NavDropdown.Item>
               </NavDropdown>
               </Nav>
           

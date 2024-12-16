@@ -13,10 +13,14 @@ import PostApocalyptiquePage from './Pages/PostApocalyptiquePage'
 import HorreurPage from './Pages/HorreurPage'
 import ProfilPage from './Pages/ProfilPage'
 import AdminPage from './Pages/AdminPage'
-import EgypteAntique from './Pages/EgypteAntiquePage'
 import ScienceFiction from './Pages/ScienceFictionPage'
-import VoyageTemporel from './Pages/VoyageTemporelPage'
 import ProfilPageAdmin from './Pages/ProfilPageAdmin'
+import Fantastique from './Pages/FantastiquePage'
+import Magie from './Pages/MagiePage'
+import WowPage from './Pages/WowPage'
+import LolPage from './Pages/LolPage'
+import MysterePage from './Pages/MysterePage'
+import MecaniquePage from './Pages/MecaniquePage'
 
 
 function App() {
@@ -36,10 +40,14 @@ function App() {
           <Route path='/reservation' element={<ReservationPage></ReservationPage>}></Route>
           <Route path='/profil' element={<ProfilPage></ProfilPage>}></Route>
           <Route path='/admin' element={<AdminPage></AdminPage>}></Route>
-          <Route path='/egypteantique' element={<EgypteAntique></EgypteAntique>}></Route>
+          <Route path='/magie' element={<Magie></Magie>}></Route>
           <Route path='/sciencefiction' element={<ScienceFiction></ScienceFiction>}></Route>
-          <Route path='/voyagetemporel' element={<VoyageTemporel></VoyageTemporel>}></Route>
+          <Route path='/fantastique' element={<Fantastique></Fantastique>}></Route>
           <Route path='/profilAdmin' element={<ProfilPageAdmin></ProfilPageAdmin>}></Route>
+          <Route path='/wowpage' element={<WowPage></WowPage>}></Route>
+          <Route path='/lolpage' element={<LolPage></LolPage>}></Route>
+          <Route path='/mysterepage' element={<MysterePage></MysterePage>}></Route>
+          <Route path='/mecaniquepage' element={<MecaniquePage></MecaniquePage>}></Route>
          
         </Routes>
         <Footer></Footer>
