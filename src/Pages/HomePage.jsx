@@ -1,18 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import '../App.css'; 
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import Banner from "../components/Banner";
 import EscapeGameCards from '../components/EscapeGameCards';
+import gameCard1 from '../assets/Equipe-escape-game-postapocalyptique.jpg';
+import gameCard2 from '../assets/Equipe-escape-game-horreur.jpg';
+import gameCard3 from '../assets/Equipe_escape_game_investigation.jpg';
 import MemoriesSection from '../components/MemoriesSection';
 import NewsLetterSection from '../components/NewsLetterSection';
 import backgroundImage from '../assets/HomePageBanner.webp'
 
 const HomePage = () => {
   const games = [
-    { image: "/path/to/image1.jpg", title: "Escape Game 1" },
-    { image: "/path/to/image2.jpg", title: "Escape Game 2" },
-    { image: "/path/to/image3.jpg", title: "Escape Game 3" },
+    { image: gameCard1, title: "La Dernière Colonie" },
+    { image: gameCard2, title: "Le Manoir de l'épouvante" },
+    { image: gameCard3, title: "L'Enigme de l'inspecteur disparu" },
 ];
 
 const memories = [
@@ -26,7 +29,7 @@ const memories = [
         subtitle="Plongez dans l'aventure !"
       />
       
-      <Container fluid style={{ backgroundColor: "#1A0A53", margin: '0',padding: '0', maxWidth: '100%' }}>
+      <Container fluid style={{ backgroundColor: "#1A0A53",maxWidth: '100%' }}>
         <EscapeGameCards games={games} />
         <MemoriesSection memories={memories}/>
         <NewsLetterSection />

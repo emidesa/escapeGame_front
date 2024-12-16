@@ -1,4 +1,3 @@
-
 body, html {
   overflow-x: hidden;
 }
@@ -31,17 +30,6 @@ color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre */
   border: none;
 }
-
-
-body, html {
-  overflow-x: hidden;
-}
-
-
-body, html {
-  overflow-x: hidden;
-}
-
 
 
 /* components/Banner.css */
@@ -77,25 +65,51 @@ body, html {
 
 /* components/escapeGameCardsSection.css */
 .game-cards-section {
-  margin: 0;
+  margin: 0 auto;
+  padding: 50px 20px;
+  background-color: #1A0A53;
+  display: flex;
+  justify-content: center;
 }
 
 .game-card {
-  margin-top: 100px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  width: 280px;
+  height: 380px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
-.game-card img {
-  border-radius: 10px 10px 0 0;
-  height: 200px;
-  object-fit: cover;
+.game-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Effet sombre */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.game-card-title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .game-card-button {
-  text-align: center;
-  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
 }
 
 /* components/memoriesSection.css */
@@ -167,18 +181,17 @@ body, html {
 
   
   .btn-pill {
-    background-color: #6c2eb9; /* Couleur de fond */
-    color: #fff; /* Couleur du texte */
+    background: linear-gradient(to right, #9929BD, #701E8A, #461357);
+    color: #fff; 
     border: none; /* Pas de bordure */
-    border-radius: 50px; /* Effet pillule */
-    padding: 10px 20px; /* Ajustez les espacements */
+    border-radius: 20px; /* Effet pillule */
+    padding: 8px 20px; /* Ajustez les espacements */
     font-weight: bold;
-    text-transform: uppercase;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: background-color 0.7s ease-in-out;
   }
   
   .btn-pill:hover {
-    background-color: #4a1c88; /* Couleur plus foncée au survol */
+    background: linear-gradient(to right, #9929BD, #461357, #701E8A ); 
     transform: scale(1.1); /* Effet de zoom au survol */
   }
   
