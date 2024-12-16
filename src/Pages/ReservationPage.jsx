@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { } from "../App.css";
-
+import "../App.css";
 
 const Reservation = () => {
   const today = new Date();
@@ -17,8 +16,6 @@ const Reservation = () => {
   const [reservations, setReservations] = useState([]);
 
   const availableTimes = ['10:00', '12:00', '14:00', '16:00', '18:00'];
-
-
 
   const daysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
   const startDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
@@ -43,7 +40,7 @@ const Reservation = () => {
 
   const handleSlotSelect = (day) => {
     setSelectedSlot(`${currentYear}-${currentMonth + 1}-${day}`);
-    setSelectedTime(''); // Reset selected time when changing the day
+    setSelectedTime('');
   };
 
   const handleTimeSelect = (e) => {
@@ -56,7 +53,6 @@ const Reservation = () => {
       [e.target.name]: e.target.value,
     });
   };
-
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -76,12 +72,10 @@ const Reservation = () => {
     const totalDays = daysInMonth(currentMonth, currentYear);
     const days = [];
 
-    // Empty cells for the first row before the start of the month
     for (let i = 0; i < startDayOfMonth; i++) {
       days.push(<div key={`empty-${i}`} className="calendar-cell empty-cell"></div>);
     }
 
-    // Render actual days
     for (let day = 1; day <= totalDays; day++) {
       const isSelected = selectedSlot === `${currentYear}-${currentMonth + 1}-${day}`;
       days.push(
@@ -126,13 +120,9 @@ const Reservation = () => {
               onChange={handleTimeSelect}
               required
             >
-              <option value="" disabled>
-                Sélectionnez un créneau
-              </option>
+              <option value="" disabled>Sélectionnez un créneau</option>
               {availableTimes.map((time, idx) => (
-                <option key={idx} value={time}>
-                  {time}
-                </option>
+                <option key={idx} value={time}>{time}</option>
               ))}
             </select>
           </div>
@@ -186,13 +176,5 @@ const Reservation = () => {
     </div>
   );
 };
-
-
-
-    
-    
-    </>;
-}
- 
 
 export default Reservation;
