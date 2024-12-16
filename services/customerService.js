@@ -21,6 +21,21 @@ axiosInstance.interceptors.request.use(
     }
 );
 
+// Interceptor de réponse pour gérer les erreurs globalement
+axiosInstance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            // Rediriger l'utilisateur vers la page de connexion si token est invalide ou expiré
+            console.log("Token invalide ou expiré. Redirection vers la page de connexion.");
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            window.location.href = '/login'; // Redirection vers la page de login
+        }
+        return Promise.reject(error);
+    }
+);
+
 function login(email, password) {
     console.log('Tentative de connexion avec email:', email);
     return axiosInstance.post('/login', { email, password })

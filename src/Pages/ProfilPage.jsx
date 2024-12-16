@@ -19,6 +19,7 @@ const ProfilPage = () => {
             const userId = localStorage.getItem('userId');
             if (!userId) {
                 setError("ID utilisateur non trouvé. Veuillez vous reconnecter.");
+                navigate('/login');
                 return;
             }
             console.log("Fetching user data for ID:", userId);
@@ -35,9 +36,22 @@ const ProfilPage = () => {
         }
     };
 
+    // Fonction pour vérifier si le token est valide
+    const checkTokenValidity = () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            setError("Token manquant. Veuillez vous reconnecter.");
+            navigate('/login');  // Rediriger vers la page de connexion si pas de token
+            return false;
+        }
+        return true;
+    };
+
 
     useEffect(() => {
-        fetchUserData();
+        if (checkTokenValidity()) {
+            fetchUserData();
+        }
     }, []);
 
     const handleInputChange = (e) => {
