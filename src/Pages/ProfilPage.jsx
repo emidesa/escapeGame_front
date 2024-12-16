@@ -107,7 +107,7 @@ const ProfilPage = () => {
     const handleLogout = () => {
         localStorage.removeItem('userId');
         localStorage.removeItem('token');
-        navigate('/login');
+        
     };
 
     if (error) {
