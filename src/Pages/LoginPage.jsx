@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import '../App.css';
 import customerService from '../../services/customerService';
 import { useNavigate } from 'react-router-dom';
@@ -12,56 +12,56 @@ const LoginPage = () => {
     const [signupEmail, setSignupEmail] = useState('');
     const [signupPassword, setSignupPassword] = useState('');
     const [signupTel, setSignupTel] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    // Gestionnaire pour ajouter un utilisateur
-    const addCustomer = async (e) => {
-        e.preventDefault(); // Empêche le rechargement de la page
-        console.log({
-          first_name: signupFirstName,
-          last_name: signupLastName,
-          email: signupEmail,
-          password: signupPassword,
-          phone: signupTel,
-      });
-        try {
-            // Appel au service pour ajouter un utilisateur
-            const response = await customerService.addCustomer({ 
-              first_name: signupFirstName, 
-              last_name: signupLastName, 
-              email: signupEmail, 
-              password: signupPassword, 
-              phone: signupTel
-            });
-            console.log('Utilisateur créé avec succès :');
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            navigate('/');
+        }
+    }, [navigate]);
 
-            // Redirection après succès
-            navigate(`/`);
+    const addCustomer = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await customerService.addCustomer({ 
+                first_name: signupFirstName, 
+                last_name: signupLastName, 
+                email: signupEmail, 
+                password: signupPassword, 
+                phone: signupTel
+            });
+            console.log('Utilisateur créé avec succès :', response.data);
+            navigate('/login');
         } catch (err) {
-            console.error('Erreur lors de la création de l’utilisateur', err.response || err.message);
+            console.error('Erreur lors de la création de l\'utilisateur', err.response || err.message);
+            setError(err.response?.data?.message || 'Une erreur est survenue lors de la création du compte');
         }
     };
 
-    // Gestionnaire pour la connexion
     const handleLogin = async (e) => {
         e.preventDefault();
-    
-        const loginData = {
-            loginEmail: loginEmail,  // email directement
-            loginPassword: loginPassword  // password directement
-        };
+        setError('');
         
         try {
-            const response = await customerService.login(loginData);
+            console.log('Tentative de connexion avec:', loginEmail);
+            const response = await customerService.login(loginEmail, loginPassword);
             console.log('Connexion réussie', response.data);
-            navigate('/');
+            if (response.data && response.data.token && response.data.userId) {
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('userId', response.data.userId.toString());
+                console.log('Token stocké:', response.data.token);
+                console.log('ID utilisateur stocké:', response.data.userId);
+                navigate('/');
+            } else {
+                throw new Error('Données de connexion invalides');
+            }
         } catch (err) {
             console.error('Erreur lors de la connexion', err.response?.data || err.message);
-            alert(err.response?.data?.message || 'Une erreur est survenue');
+            setError(err.response?.data?.message || 'Une erreur est survenue lors de la connexion');
         }
     };
-    
-    
 
     return (
         <div className="login-page">
@@ -69,8 +69,9 @@ const LoginPage = () => {
                 <h1 className="mb-3">Connexion</h1>
                 <p>Connectez-vous pour entrer dans l'univers mystérieux et résoudre les énigmes les plus captivantes !</p>
                 
+                {error && <Alert variant="danger">{error}</Alert>}
+                
                 <Row className="justify-content-center align-items-center mt-5">
-                    {/* Formulaire de connexion */}
                     <Col md={4} className="text-start">
                         <h3 className="form-title">Connexion</h3>
                         <Form className="login-form" onSubmit={handleLogin}>
@@ -98,12 +99,10 @@ const LoginPage = () => {
                         </Form>
                     </Col>
 
-                    {/* Ligne de séparation */}
                     <Col md={1} className="text-center separator">
                         <div className="vertical-line"></div>
                     </Col>
 
-                    {/* Formulaire de création de compte */}
                     <Col md={4} className="text-start">
                         <h3 className="form-title">Créer son compte</h3>
                         <Form className="signup-form" onSubmit={addCustomer}>
@@ -133,8 +132,7 @@ const LoginPage = () => {
                                     value={signupEmail} 
                                     onChange={(e) => setSignupEmail(e.target.value)} 
                                 />
-
-</Form.Group>
+                            </Form.Group>
                             <Form.Group className="mb-3" controlId="formSignupTel">
                                 <Form.Label>Phone</Form.Label>
                                 <Form.Control 
@@ -165,3 +163,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+

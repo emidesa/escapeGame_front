@@ -12,7 +12,8 @@ import AtHomePage from './Pages/AtHomePage'
 import PostApocalyptiquePage from './Pages/PostApocalyptiquePage'
 import HorreurPage from './Pages/HorreurPage'
 import ProfilPage from './Pages/ProfilPage'
-import AdminPage from './Pages/AdminPage'
+import ProfilPageAdmin from './Pages/ProfilPageAdmin'
+
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
           <Route path='/post-apocalyptique' element={<PostApocalyptiquePage></PostApocalyptiquePage>}></Route>
           <Route path='/reservation' element={<ReservationPage></ReservationPage>}></Route>
           <Route path='/profil' element={<ProfilPage></ProfilPage>}></Route>
-          <Route path='/admin' element={<AdminPage></AdminPage>}></Route>
+          <Route path='/profilAdmin' element={<ProfilPageAdmin></ProfilPageAdmin>}></Route>
          
         </Routes>
         <Footer></Footer>
