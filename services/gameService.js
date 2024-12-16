@@ -1,25 +1,25 @@
 import axios from 'axios';
 
-const API_URL = 'https://localhost:3000/api';
+const API_URL = 'http://localhost:3000/api';
 
-function getALLGames(){
-    return axios.get('/allGames');
+function getAllGames(){
+    return axios.get(`${API_URL}/allGames`);
 }
 
 function addGame() {
-    return axios.post('/addGame');
+    return axios.post(`${API_URL}/addGame`);
 }
 
 function updateGame() {
-    return axios.post('/updateGame');
+    return axios.put(`${API_URL}/updateGame`);
 }
 
 function deleteGame() {
-    return axios.post('/deleteGame');
+    return axios.delete(`${API_URL}/deleteGame`);
 }
 
 export default {
-    getALLGames,
+    getAllGames,
     addGame,
     updateGame,
     deleteGame,
