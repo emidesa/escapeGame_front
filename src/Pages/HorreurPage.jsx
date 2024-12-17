@@ -1,22 +1,24 @@
+import Banner from "../components/Banner";
+import backgroundImage from '../assets/Equipe-escape-game-horreur.jpg'
+import Equipe1Souvenirs from "../assets/Equipe_1_souvenirs.jpg";
+import Equipe2Souvenirs from "../assets/Equipe_2_souvenirs.jpg";
 import { useNavigate } from "react-router-dom";
 
 
 
 const HorreurPage = () => { 
     const navigate = useNavigate();
+
+      const carouselImages = [
+        { src: Equipe1Souvenirs, alt: "Carousel Image 1" },
+        { src: Equipe2Souvenirs, alt: "Carousel Image 2" },
+      ];
+
     return <>
-    <div style={{ backgroundColor: '#1A0A53', color: 'white', padding: '20px' }}>
-      {/* Banner Section */}
-      <section style={{ textAlign: 'center', marginBottom: '50px' }}>
-        <img
-          src="/path/to/banner.jpg" // Remplacez par le chemin de l'image de la bannière
-          alt="Le Manoir de l’épouvante"
-          style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }}
-        />
-        <h1 style={{ position: 'relative', top: '-50px', fontSize: '3em' }}>
-        Le Manoir de l’épouvante
-        </h1>
-      </section>
+    <Banner
+      backgroundImage={backgroundImage}
+      title="Le Manoir de l'épouvante"
+    />
 
       {/* Content Section */}
       <section
@@ -161,7 +163,6 @@ const HorreurPage = () => {
           </div>
         </div>
       </section>
-    </div>
   
     
     </>;

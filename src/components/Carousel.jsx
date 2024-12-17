@@ -6,6 +6,7 @@ import '../Carousel.css';
 const CustomCarousel = ({ images }) => {
     return (
         <div className="carousel-section">
+            <p className="carouselTitle">Vos souvenirs</p>
           <BootstrapCarousel>
             {images.map((image, index) => (
               <BootstrapCarousel.Item key={index}>

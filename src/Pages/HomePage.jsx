@@ -34,7 +34,7 @@ const HomePage = () => {
       subtitle="Plongez dans l'aventure !"
     />
 
-    <Container fluid style={{ backgroundColor: "#1A0A53", maxWidth: '100%' }}>
+    <Container fluid className="p-0" style={{ backgroundColor: "#1A0A53", maxWidth: '100%' }}>
       <EscapeGameCards games={games} />
 
       {/*Storytelling de l'entreprise*/}
