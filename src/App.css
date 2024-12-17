@@ -413,3 +413,8 @@ color: #FFF8F0;
     margin-bottom: 10px;
   }
   
+  .option-disabled {
+    color: gray;
+    pointer-events: none;
+  }
+  
