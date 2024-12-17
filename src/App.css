@@ -1,5 +1,11 @@
 body, html {
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1A0A53;
 }
 
 
@@ -137,10 +143,10 @@ color: #FFF8F0;
 /* components/NewsletterSection.css */
 .newsletter-section {
   background-color: #a49dbf;
-  padding: 40px;
+  padding: 100px;
   border-radius: 15px;
   text-align: center;
-  margin: 50px auto;
+  margin: 100px auto;
   max-width: 800px;
 }
 
@@ -152,6 +158,7 @@ color: #FFF8F0;
   outline: none;
   text-align: center;
 }
+
 
 
 
