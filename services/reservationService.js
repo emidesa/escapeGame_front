@@ -19,8 +19,8 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-function getAllReservations(userId) {
-    return axiosInstance.get(`${API_URL}/userReservations/${userId}`);
+function getAllReservations() {
+    return axiosInstance.get(`${API_URL}/AllReservations/`);
   }
 
   function getReservation(id) {

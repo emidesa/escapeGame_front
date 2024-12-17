@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import customerService from '../../services/customerService';
 import contactService from '../../services/contactService';
 import gameService from '../../services/gameService';
+import reservationService from '../../services/reservationService'; // Import reservationService
 import '../App.css';
 
 const AdminPage = () => {
@@ -11,22 +12,24 @@ const AdminPage = () => {
   const [escapeGames, setEscapeGames] = useState([]);
   const [selectedGame, setSelectedGame] = useState(null);
   const [activeTab, setActiveTab] = useState('users');
+  const [reservations, setReservations] = useState([]); // New state for reservations
 
-  useEffect(() => {
-    fetchUsers();
-    fetchContactMessages();
-    fetchEscapeGames();
-  }, []);
+  
 
   const fetchUsers = async () => {
+    const token = localStorage.getItem('token'); // Récupérer le token
+    if (!token) {
+      console.error('Token manquant');
+      return; // Sortir si le token est null
+    }
     try {
-      const response = await customerService.getAllCustomers();
-      console.log(response.data);
+      const response = await customerService.getAllCustomers(token);
       setUsers(response.data);
     } catch (error) {
       console.error('Erreur lors de la récupération des utilisateurs :', error);
     }
   };
+  
 
   const fetchContactMessages = async () => {
     try {
@@ -46,6 +49,23 @@ const AdminPage = () => {
     }
   };
 
+  const fetchReservations = async () => { // New function to fetch reservations
+    try {
+      const response = await reservationService.getAllReservations();
+      setReservations(response.data);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des réservations :', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+    fetchContactMessages();
+    fetchEscapeGames();
+    fetchReservations(); 
+  }, []);
+
+  
   const handleUserUpdate = async () => {
     if (!selectedUser) return;
     try {
@@ -67,6 +87,19 @@ const AdminPage = () => {
         fetchUsers();
       } catch (error) {
         console.error('Erreur lors de la suppression :', error);
+        alert('Une erreur est survenue lors de la suppression.');
+      }
+    }
+  };
+
+  const handleMessageDelete = async (messageId) => { // New function to delete messages
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer ce message ?')) {
+      try {
+        await contactService.deleteMessage(messageId);
+        alert('Message supprimé avec succès !');
+        fetchContactMessages();
+      } catch (error) {
+        console.error('Erreur lors de la suppression du message :', error);
         alert('Une erreur est survenue lors de la suppression.');
       }
     }
@@ -98,13 +131,15 @@ const AdminPage = () => {
     }
   };
 
-  const handleGameAdd = async () => {
+  const handleGameAdd = async () => { // Updated function to add games
     const newGame = {
       name: 'Nouveau jeu',
       description: 'Description du nouveau jeu',
-      price_per_person: 0,
-      max_players: 6,
+      goal: 'Objectif du jeu',
       duration: 60,
+      max_players: 6,
+      price_per_person: 25,
+      category_id: 1, // Assurez-vous d'avoir une catégorie valide
     };
     try {
       await gameService.addGame(newGame);
@@ -115,6 +150,8 @@ const AdminPage = () => {
       alert('Une erreur est survenue lors de l\'ajout.');
     }
   };
+
+  
 
   return (
     <div style={{ backgroundColor: '#9F8FBF', minHeight: '100vh', padding: '20px' }}>
@@ -159,10 +196,24 @@ const AdminPage = () => {
             color: 'white',
             border: 'none',
             borderRadius: '5px',
+            marginRight: '10px',
             cursor: 'pointer',
           }}
         >
           Escape Games
+        </button>
+        <button
+          onClick={() => setActiveTab('reservations')} // New button for reservations
+          style={{
+            padding: '10px 20px',
+            backgroundColor: activeTab === 'reservations' ? '#6A2C9B' : '#29205E',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+          }}
+        >
+          Réservations
         </button>
       </div>
 
@@ -293,7 +344,7 @@ const AdminPage = () => {
           <ul style={{ listStyle: 'none', padding: 0 }}>
             {contactMessages.map((message) => (
               <li
-                key={message.id}
+                key={message.id_contact}
                 style={{
                   padding: '10px',
                   margin: '5px 0',
@@ -305,6 +356,20 @@ const AdminPage = () => {
                 <p><strong>De :</strong> {message.name} ({message.email})</p>
                 <p><strong>Date :</strong> {new Date(message.created_at).toLocaleString()}</p>
                 <p><strong>Message :</strong> {message.message}</p>
+                <button
+                  onClick={() => handleMessageDelete(message.id_contact)} // New delete button for messages
+                  style={{
+                    padding: '5px 10px',
+                    backgroundColor: '#29205E',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    marginTop: '10px',
+                  }}
+                >
+                  Supprimer
+                </button>
               </li>
             ))}
           </ul>
@@ -449,6 +514,33 @@ const AdminPage = () => {
               </form>
             </div>
           )}
+        </div>
+      )}
+
+      {activeTab === 'reservations' && ( // New section for reservations
+        <div>
+          <h2 style={{ color: '#29205E' }}>Réservations</h2>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {reservations.map((reservation) => (
+              <li
+                key={reservation.id_reservation}
+                style={{
+                  padding: '10px',
+                  margin: '5px 0',
+                  backgroundColor: '#4A2B8C',
+                  color: 'white',
+                  borderRadius: '10px',
+                }}
+              >
+                <p><strong>Client :</strong> {reservation.customer_id}</p>
+                <p><strong>Escape Game :</strong> {reservation.escape_game_name}</p>
+                <p><strong>Date :</strong> {new Date(reservation.reservation_date).toLocaleDateString()}</p>
+                <p><strong>Heure :</strong> {reservation.reservation_time}</p>
+                <p><strong>Nombre de joueurs :</strong> {reservation.number_of_players}</p>
+                <p><strong>Prix total :</strong> {reservation.total_price}€</p>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
