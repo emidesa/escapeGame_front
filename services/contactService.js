@@ -10,7 +10,12 @@ function getAllMessages() {
     return axios.get(`${API_URL}/AllContact`);
 }
 
+function deleteMessage(id) {
+    return axios.delete(`${API_URL}/deleteContact/${id}`);
+}
+
 export default {
+    deleteMessage,
     sendContact,
     getAllMessages,
 }
