@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import customerService from '../../services/customerService';
+import reservationService from '../../services/reservationService';
 import '../App.css';
 
 const ProfilPage = () => {
@@ -10,6 +11,7 @@ const ProfilPage = () => {
         email: '',
         phone: ''
     });
+    const [reservations, setReservations] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -26,6 +28,8 @@ const ProfilPage = () => {
             const response = await customerService.getCustomer(userId);
             console.log("User data received:", response.data);
             setUser(response.data);
+
+            fetchUserReservations(userId);
         } catch (error) {
             console.error("Erreur lors de la récupération des données utilisateur", error);
             if (error.response && error.response.status === 404) {
@@ -36,17 +40,26 @@ const ProfilPage = () => {
         }
     };
 
-    // Fonction pour vérifier si le token est valide
+    const fetchUserReservations = async (userId) => {
+        try {
+            const response = await reservationService.getAllReservations(userId);
+            console.log("Reservations data received:", response.data); // Log pour vérifier les données
+
+            setReservations(response.data);
+        } catch (error) {
+            console.error("Erreur lors de la récupération des réservations", error);
+        }
+    };
+
     const checkTokenValidity = () => {
         const token = localStorage.getItem('token');
         if (!token) {
             setError("Token manquant. Veuillez vous reconnecter.");
-            navigate('/login');  // Rediriger vers la page de connexion si pas de token
+            navigate('/login');
             return false;
         }
         return true;
     };
-
 
     useEffect(() => {
         if (checkTokenValidity()) {
@@ -107,7 +120,19 @@ const ProfilPage = () => {
     const handleLogout = () => {
         localStorage.removeItem('userId');
         localStorage.removeItem('token');
-        
+    };
+
+    const handleCancelReservation = async (reservationId) => {
+        if (window.confirm("Êtes-vous sûr de vouloir annuler cette réservation ?")) {
+            try {
+                await reservationService.deleteReservation(reservationId);
+                alert("Réservation annulée avec succès");
+                fetchUserReservations(localStorage.getItem('userId'));
+            } catch (error) {
+                console.error("Erreur lors de l'annulation de la réservation", error);
+                alert("Erreur lors de l'annulation de la réservation");
+            }
+        }
     };
 
     if (error) {
@@ -117,8 +142,6 @@ const ProfilPage = () => {
     return (
         <div style={{ backgroundColor: '#9F8FBF', minHeight: '100vh', padding: '20px' }}>
             <h1 style={{ textAlign: 'center', color: '#29205E', marginBottom: '60px' }}>Votre profil</h1>
-
-           
 
             <div style={{
                 display: 'flex',
@@ -295,27 +318,78 @@ const ProfilPage = () => {
                                 >
                                     Supprimer
                                 </button>
-                                 <button
-                                 onClick={handleLogout}
-                                 style={{
-                                 padding: '10px 20px',
-                                  backgroundColor: '#29205E',
-                                  color: 'white',
-                                 borderRadius: '20px',
-                                 border: 'none',
-                                    cursor: 'pointer',
-                                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                                   position: 'absolute',
-                                 top: '30px',
-                                 right: '30px',
-                                 }}
-                                   >
+                                <button
+                                    onClick={handleLogout}
+                                    style={{
+                                        padding: '10px 20px',
+                                        backgroundColor: '#29205E',
+                                        color: 'white',
+                                        borderRadius: '20px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+                                        position: 'absolute',
+                                        top: '30px',
+                                        right: '30px',
+                                    }}
+                                >
                                     Déconnexion
-                                 </button>
+                                </button>
                             </>
                         )}
                     </div>
                 </form>
+            </div>
+
+            {/* Reservations Section */}
+            <div style={{
+                backgroundColor: '#4A2B8C',
+                padding: '30px',
+                borderRadius: '15px',
+                boxShadow: '15px -15px 4px 0px rgba(0, 0, 0, 0.25)',
+                width: '80%',
+                maxWidth: '600px',
+                margin: '40px auto',
+            }}>
+                <h2 style={{ color: 'white', marginBottom: '20px' }}>Vos Réservations</h2>
+                {reservations.length > 0 ? (
+                    <ul style={{ listStyleType: 'none', padding: 0 }}>
+                        {reservations.map((reservation) => (
+                            <li key={reservation.id_reservation} style={{
+                                backgroundColor: 'white',
+                                padding: '15px',
+                                borderRadius: '10px',
+                                marginBottom: '20px'
+                            }}>
+                                <p><strong>Escape Game:</strong> {reservation.escape_game_name}</p>
+                                <p><strong>Date:</strong> {format(new Date(reservation.reservation_date), 'dd/MM/yyyy')}</p>
+                                <p><strong>Heure:</strong> {reservation.reservation_time}</p>
+                                <p><strong>Nombre de joueurs:</strong> {reservation.number_of_players}</p>
+                                <p><strong>Prix total:</strong> {reservation.total_price}€</p>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '15px' }}>
+                                    
+                                  
+                                   
+                                    <button
+                                        onClick={() => handleCancelReservation(reservation.id_reservation)}
+                                        style={{
+                                            padding: '8px 15px',
+                                            backgroundColor: '#29205E',
+                                            color: 'white',
+                                            borderRadius: '20px',
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        Annuler
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p style={{ color: 'white' }}>Vous n'avez pas encore de réservations.</p>
+                )}
             </div>
         </div>
     );
