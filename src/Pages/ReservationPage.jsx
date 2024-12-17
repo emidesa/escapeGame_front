@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import reservationService from '../../services/reservationService';
 import "../App.css";
 import gameService from '../../services/GameService';
 
 const ReservationPage = () => {
+  const navigate = useNavigate();
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -38,13 +40,16 @@ const ReservationPage = () => {
   const fetchEscapeGames = async () => {
     try {
       const response = await gameService.getAllGames();
-      console.log(response.data); // Vérifiez ici si les données sont bien récupérées
-      setEscapeGames(response.data);
-      if (response.data.length > 0) {
+      if (response.data && Array.isArray(response.data) && response.data.length > 0) {
+        setEscapeGames(response.data);
         setFormData((prev) => ({ ...prev, escapeGameId: response.data[0].id_escapeGame }));
+      } else {
+        console.error("Aucun escape game n'a été trouvé");
+        setEscapeGames([]);
       }
     } catch (error) {
       console.error("Erreur lors de la récupération des escape games:", error);
+      setEscapeGames([]);
     }
   };
 
@@ -115,10 +120,15 @@ const ReservationPage = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const selectedEscapeGame = escapeGames.find(game => game.id_escapeGame === formData.escapeGameId);
+    if (!formData.escapeGameId) {
+      alert('Veuillez sélectionner un escape game.');
+      return;
+    }
+
+    const selectedEscapeGame = escapeGames.find(game => game.id_escapeGame === parseInt(formData.escapeGameId));
 
     if (!selectedEscapeGame) {
-      alert('Escape game invalide.');
+      alert('L\'escape game sélectionné n\'est pas valide. Veuillez réessayer.');
       return;
     }
 
@@ -132,8 +142,9 @@ const ReservationPage = () => {
         setSelectedSlot(null);
         setSelectedTime('');
         fetchReservations(); // Rafraîchir les réservations
+        navigate('/profil'); // Redirect to profile page after successful reservation
       } catch (error) {
-        alert('Erreur lors de la réservation. Veuillez réessayer.');
+        alert('Créneau horaire indisponible. Veuillez réessayer.');
       }
     } else {
       alert('Veuillez remplir tous les champs requis.');
@@ -142,7 +153,9 @@ const ReservationPage = () => {
 
   const isSlotAvailable = (day, time) => {
     const date = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    return !reservations.some(r => r.reservation_date === date && r.reservation_time === time);
+    return !reservations.some(
+      (r) => r.reservation_date === date && r.reservation_time === time
+    );
   };
 
   const renderDays = () => {
@@ -199,11 +212,16 @@ const ReservationPage = () => {
               onChange={handleInputChange}
               required
             >
-              {escapeGames.map((game) => (
-                <option key={game.id_escapeGame} value={game.id_escapeGame}>
-                  {game.name}
-                </option>
-              ))}
+              <option value="">Sélectionnez un escape game</option>
+              {escapeGames.length > 0 ? (
+                escapeGames.map((game) => (
+                  <option key={game.id_escapeGame} value={game.id_escapeGame}>
+                    {game.name}
+                  </option>
+                ))
+              ) : (
+                <option disabled>Aucun escape game disponible</option>
+              )}
             </select>
           </div>
           <div>
@@ -216,9 +234,15 @@ const ReservationPage = () => {
             >
               <option value="" disabled>Sélectionnez un créneau</option>
               {availableTimes.map((time, idx) => (
-                <option key={idx} value={time} disabled={!isSlotAvailable(selectedSlot.split('-')[2], time)}>
-                  {time} {!isSlotAvailable(selectedSlot.split('-')[2], time) ? '(Indisponible)' : ''}
-                </option>
+                <option
+                key={idx}
+                value={time}
+                disabled={!isSlotAvailable(new Date(selectedSlot).getDate(), time)}
+
+                className={!isSlotAvailable(selectedSlot.split('-')[2], time) ? 'option-disabled' : ''}
+              >
+                {time} {!isSlotAvailable(selectedSlot.split('-')[2], time) ? '(Indisponible)' : ''}
+              </option>
               ))}
             </select>
           </div>
@@ -264,3 +288,4 @@ const ReservationPage = () => {
 };
 
 export default ReservationPage;
+
