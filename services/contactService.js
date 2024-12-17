@@ -6,7 +6,11 @@ function sendContact(data){
     return axios.post(`${API_URL}/contact`, data);
 }
 
+function getAllMessages() {
+    return axios.get(`${API_URL}/AllContact`);
+}
 
 export default {
     sendContact,
+    getAllMessages,
 }
