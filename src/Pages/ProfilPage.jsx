@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import customerService from '../../services/customerService';
 import reservationService from '../../services/reservationService';
-import { format } from 'date-fns';
 import '../App.css';
 
 const ProfilPage = () => {
