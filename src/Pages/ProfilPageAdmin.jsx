@@ -1,42 +1,87 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import customerService from '../../services/customerService';
 import contactService from '../../services/contactService';
 import gameService from '../../services/gameService';
-import reservationService from '../../services/reservationService'; // Import reservationService
+import reservationService from '../../services/reservationService';
 import '../App.css';
+import adminService from '../../services/adminService';
 
 const AdminPage = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [contactMessages, setContactMessages] = useState([]);
   const [escapeGames, setEscapeGames] = useState([]);
   const [selectedGame, setSelectedGame] = useState(null);
   const [activeTab, setActiveTab] = useState('users');
-  const [reservations, setReservations] = useState([]); // New state for reservations
+  const [reservations, setReservations] = useState([]);
 
-  
+  useEffect(() => {
+    const adminToken = localStorage.getItem('adminToken');
+    const isAdmin = localStorage.getItem('isAdmin');
 
-  const fetchUsers = async () => {
-    const token = localStorage.getItem('token'); // Récupérer le token
-    if (!token) {
-      console.error('Token manquant');
-      return; // Sortir si le token est null
+    
+    if (!adminToken || isAdmin !== 'true') {
+      console.error('Token admin manquant ou accès non autorisé');
+      navigate('/AdminLogin');
+      return;
     }
+  
+    fetchData();
+  }, [navigate]);
+  
+  const fetchData = async () => {
     try {
-      const response = await customerService.getAllCustomers(token);
-      setUsers(response.data);
+      await Promise.all([
+        fetchUsers(),
+        fetchContactMessages(),
+        fetchEscapeGames(),
+        fetchReservations()
+      ]);
     } catch (error) {
-      console.error('Erreur lors de la récupération des utilisateurs :', error);
+      console.error('Erreur lors de la récupération des données :', error);
+      handleError(error);
     }
   };
-  
+
+  const fetchUsers = async () => {
+    const adminToken = localStorage.getItem('adminToken');
+    if (!adminToken) {
+        console.error('Token admin manquant');
+        navigate('/AdminLogin');
+        return;
+    }
+
+    // Vérifiez si le token est expiré
+    const isTokenExpired = (token) => {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.exp * 1000 < Date.now();
+    };
+
+    if (isTokenExpired(adminToken)) {
+        console.error('Token expiré');
+        localStorage.removeItem('adminToken');
+        navigate('/AdminLogin');
+        return;
+    }
+
+    try {
+        const response = await adminService.getAllUsers(); // Assurez-vous que cette méthode utilise le token
+        console.log('Utilisateurs récupérés:', response);
+        setUsers(response.data);
+    } catch (error) {
+        handleError(error);
+    }
+};
+
 
   const fetchContactMessages = async () => {
     try {
       const response = await contactService.getAllMessages();
       setContactMessages(response.data);
     } catch (error) {
-      console.error('Erreur lors de la récupération des messages :', error);
+      handleError(error);
     }
   };
 
@@ -45,27 +90,31 @@ const AdminPage = () => {
       const response = await gameService.getAllGames();
       setEscapeGames(response.data);
     } catch (error) {
-      console.error('Erreur lors de la récupération des escape games :', error);
+      handleError(error);
     }
   };
 
-  const fetchReservations = async () => { // New function to fetch reservations
+  const fetchReservations = async () => {
     try {
       const response = await reservationService.getAllReservations();
       setReservations(response.data);
     } catch (error) {
-      console.error('Erreur lors de la récupération des réservations :', error);
+      handleError(error);
     }
   };
-
-  useEffect(() => {
-    fetchUsers();
-    fetchContactMessages();
-    fetchEscapeGames();
-    fetchReservations(); 
-  }, []);
-
   
+  const handleError = (error) => {
+    console.error('Erreur :', error);
+    if (error.response) {
+        if (error.response.status === 401) {
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('isAdmin');
+            navigate('/AdminLogin');
+        }
+    }
+};
+
+
   const handleUserUpdate = async () => {
     if (!selectedUser) return;
     try {
@@ -92,7 +141,7 @@ const AdminPage = () => {
     }
   };
 
-  const handleMessageDelete = async (messageId) => { // New function to delete messages
+  const handleMessageDelete = async (messageId) => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer ce message ?')) {
       try {
         await contactService.deleteMessage(messageId);
@@ -131,7 +180,7 @@ const AdminPage = () => {
     }
   };
 
-  const handleGameAdd = async () => { // Updated function to add games
+  const handleGameAdd = async () => {
     const newGame = {
       name: 'Nouveau jeu',
       description: 'Description du nouveau jeu',
@@ -139,7 +188,7 @@ const AdminPage = () => {
       duration: 60,
       max_players: 6,
       price_per_person: 25,
-      category_id: 1, // Assurez-vous d'avoir une catégorie valide
+      category_id: 1,
     };
     try {
       await gameService.addGame(newGame);
@@ -151,8 +200,8 @@ const AdminPage = () => {
     }
   };
 
-  
 
+  
   return (
     <div style={{ backgroundColor: '#9F8FBF', minHeight: '100vh', padding: '20px' }}>
       <h1 style={{ textAlign: 'center', color: '#29205E', marginBottom: '40px' }}>
@@ -203,7 +252,7 @@ const AdminPage = () => {
           Escape Games
         </button>
         <button
-          onClick={() => setActiveTab('reservations')} // New button for reservations
+          onClick={() => setActiveTab('reservations')}
           style={{
             padding: '10px 20px',
             backgroundColor: activeTab === 'reservations' ? '#6A2C9B' : '#29205E',
@@ -357,7 +406,7 @@ const AdminPage = () => {
                 <p><strong>Date :</strong> {new Date(message.created_at).toLocaleString()}</p>
                 <p><strong>Message :</strong> {message.message}</p>
                 <button
-                  onClick={() => handleMessageDelete(message.id_contact)} // New delete button for messages
+                  onClick={() => handleMessageDelete(message.id_contact)}
                   style={{
                     padding: '5px 10px',
                     backgroundColor: '#29205E',
@@ -471,6 +520,16 @@ const AdminPage = () => {
                     style={{ width: '100%', padding: '5px', borderRadius: '5px', minHeight: '100px' }}
                   />
                 </div>
+
+                <div style={{ marginBottom: '10px' }}>
+        <label>Objectif</label>
+        <input
+          type="text"
+          value={selectedGame.goal}  // Ajout du champ goal ici
+          onChange={(e) => setSelectedGame({ ...selectedGame, goal: e.target.value })}
+          style={{ width: '100%', padding: '5px', borderRadius: '5px' }}
+        />
+      </div>
                 <div style={{ marginBottom: '10px' }}>
                   <label>Prix par personne</label>
                   <input
@@ -517,7 +576,7 @@ const AdminPage = () => {
         </div>
       )}
 
-      {activeTab === 'reservations' && ( // New section for reservations
+      {activeTab === 'reservations' && (
         <div>
           <h2 style={{ color: '#29205E' }}>Réservations</h2>
           <ul style={{ listStyle: 'none', padding: 0 }}>

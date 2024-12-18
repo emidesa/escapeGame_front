@@ -1,70 +1,75 @@
 import React, { useEffect, useState } from 'react';
 import adminService from '../../services/adminService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const AdminPage = () => {
+const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState(null);
-  const [isLoginMode, setIsLoginMode] = useState(false);
+  const [isLoginMode, setIsLoginMode] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/AdminLogin');
-    } 
-  }, [navigate]);
+    const token = localStorage.getItem('adminToken');
+    const isAdmin = localStorage.getItem('isAdmin');
+    if (token && isAdmin === 'true' && location.pathname === '/AdminLogin') {
+      navigate('/profilPageAdmin');
+    }
+  }, [navigate, location]);
 
   const handleCreateAdmin = async () => {
+    if (!username || !email || !password) {
+      alert('Tous les champs sont requis pour créer un administrateur.');
+      return;
+    }
+
     try {
       console.log('Création d\'un administrateur avec les données :', { username, email, password });
       const response = await adminService.createAdmin(username, email, password);
-      
+
       console.log('Réponse de la création :', response);
-      alert(response.message);
-      
+      alert(response.message || 'Compte administrateur créé avec succès.');
+
       setUsername('');
       setEmail('');
       setPassword('');
-      navigate('/profilPageAdmin');
-      
+      setIsLoginMode(true);
     } catch (error) {
       console.error('Erreur lors de la création :', error);
-      alert(error.message);
+      alert(error.response?.data?.message || 'Une erreur est survenue lors de la création.');
     }
   };
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+        alert('Veuillez renseigner votre email et votre mot de passe.');
+        return;
+    }
+
     try {
-      console.log('Connexion avec les données :', { email, password });
-      const response = await adminService.loginAdmin(email, password);
-      
-      console.log('Réponse de la connexion :', response);
-      if (response.token) {
-        localStorage.setItem('token', response.token);
-        console.log('Token stocké avec succès');
-      }
-      
-      // Vérifiez si l'utilisateur est inclus dans la réponse
-      if (response.user) {
-        console.log('Utilisateur récupéré :', response.user);
-        // Ajoutez ici le code pour gérer l'utilisateur
-      } else {
-        console.error('Aucun utilisateur trouvé dans la réponse');
-      }
-      
-    } catch (error) {
-      console.error('Erreur lors de la connexion :', error);
-    }
-  };
-  
+        console.log('Connexion avec les données :', { email, password });
+        const response = await adminService.loginAdmin(email, password);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    console.log('Utilisateur déconnecté');
-  };
+        console.log('Réponse de la connexion :', response);
+        if (response.token) {
+            localStorage.setItem('adminToken', response.token); // Assurez-vous que cela est bien exécuté
+            localStorage.setItem('isAdmin', 'true');
+            localStorage.setItem('adminUser', JSON.stringify(response.admin || {}));
+
+            console.log('Token et informations de l\'admin stockés avec succès.');
+            navigate('/profilPageAdmin');
+        } else {
+            alert('Erreur de connexion: Aucun token trouvé.');
+        }
+    } catch (error) {
+        console.error('Erreur lors de la connexion :', error);
+        alert(error.response?.data?.message || 'Une erreur est survenue lors de la connexion.');
+    }
+};
+
 
   return (
     <div style={{ fontFamily: 'Arial, sans-serif', backgroundColor: '#f3f4f6', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
@@ -72,7 +77,7 @@ const AdminPage = () => {
         <h1 style={{ textAlign: 'center', fontSize: '1.5rem', color: '#333' }}>Gestion des administrateurs</h1>
         
         {isLoginMode ? (
-          <div>
+          <form onSubmit={handleLogin}>
             <h2 style={{ fontSize: '1.2rem', color: '#555' }}>Connexion</h2>
             <input
               type="email"
@@ -80,6 +85,7 @@ const AdminPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               style={{ width: '100%', padding: '10px', marginBottom: '10px', border: '1px solid #ddd', borderRadius: '5px' }}
+              required
             />
             <input
               type="password"
@@ -87,15 +93,16 @@ const AdminPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               style={{ width: '100%', padding: '10px', marginBottom: '10px', border: '1px solid #ddd', borderRadius: '5px' }}
+              required
             />
             <button
-              onClick={() => handleLogin(email, password)}
+              type="submit"
               style={{ width: '100%', padding: '10px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
             >
               Se connecter
             </button>
             <p style={{ textAlign: 'center', cursor: 'pointer', color: '#007bff' }} onClick={() => setIsLoginMode(false)}>Créer un compte</p>
-          </div>
+          </form>
         ) : (
           <div>
             <h2 style={{ fontSize: '1.2rem', color: '#555' }}>Créer un administrateur</h2>
@@ -134,4 +141,5 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default AdminLogin;
+
