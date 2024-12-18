@@ -11,7 +11,6 @@ import MiniGamePage from './Pages/MiniGamePage'
 import PostApocalyptiquePage from './Pages/PostApocalyptiquePage'
 import HorreurPage from './Pages/HorreurPage'
 import ProfilPage from './Pages/ProfilPage'
-import AdminPage from './Pages/AdminPage'
 import ScienceFiction from './Pages/ScienceFictionPage'
 import ProfilPageAdmin from './Pages/ProfilPageAdmin'
 import Fantastique from './Pages/FantastiquePage'
@@ -21,6 +20,7 @@ import LolPage from './Pages/LolPage'
 import MysterePage from './Pages/MysterePage'
 import MecaniquePage from './Pages/MecaniquePage'
 import EnquetePage from './Pages/EnquetePage'
+import AdminLogin from './Pages/AdminLogin'
 
 
 function App() {
@@ -31,7 +31,8 @@ function App() {
         <NavBar></NavBar>
         <Routes>
           <Route path='/' element={<HomePage></HomePage>}></Route>
-          <Route path='/login' element={<LoginPage></LoginPage>}></Route>
+          <Route path='/Login' element={<LoginPage></LoginPage>}></Route>
+          <Route path='/adminLogin' element={<AdminLogin></AdminLogin>}></Route>
           <Route path='/contact' element={<ContactPage></ContactPage>}></Route>
           <Route path='/mini-game' element={<MiniGamePage></MiniGamePage>}></Route>
           <Route path='/enquetepage' element={<EnquetePage></EnquetePage>}></Route>
@@ -39,11 +40,10 @@ function App() {
           <Route path='/post-apocalyptique' element={<PostApocalyptiquePage></PostApocalyptiquePage>}></Route>
           <Route path='/reservation' element={<ReservationPage></ReservationPage>}></Route>
           <Route path='/profil' element={<ProfilPage></ProfilPage>}></Route>
-          <Route path='/admin' element={<AdminPage></AdminPage>}></Route>
           <Route path='/magie' element={<Magie></Magie>}></Route>
           <Route path='/sciencefiction' element={<ScienceFiction></ScienceFiction>}></Route>
           <Route path='/fantastique' element={<Fantastique></Fantastique>}></Route>
-          <Route path='/profilAdmin' element={<ProfilPageAdmin></ProfilPageAdmin>}></Route>
+          <Route path='/profilPageAdmin' element={<ProfilPageAdmin></ProfilPageAdmin>}></Route>
           <Route path='/wowpage' element={<WowPage></WowPage>}></Route>
           <Route path='/lolpage' element={<LolPage></LolPage>}></Route>
           <Route path='/mysterepage' element={<MysterePage></MysterePage>}></Route>

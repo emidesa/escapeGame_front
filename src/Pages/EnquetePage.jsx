@@ -159,58 +159,96 @@ const EnquetePage = () => {
    
 
       {/* Section : Détails Livraison */}
-      <Container fluid className="py-5">
-        <Row className="justify-content-center">
-          <Col md={8}>
-            <Card
-              className="p-4 mb-4"
-              style={{ borderRadius: "15px", backgroundColor: "#A58DB3" }}
-            >
-              <Card.Body>
-                <Card.Title className="fw-bold mb-3">Détails livraison</Card.Title>
-                <Card.Text style={{ fontSize: "0.9rem" }}>
-                  Le Lorem Ipsum est simplement du faux texte employé dans la composition et
-                  la mise en page avant impression.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+      <Container fluid className="py-5" style={{ color: "white" }}>
+      {/* Section Détails livraison */}
+      <Row className="justify-content-center mb-5">
+        <Col md={10} className="p-4 rounded" style={{ backgroundColor: "#D3C5E5", color: "#1E0D3F", height:"400px" }}>
+          <h2 className="fw-bold">Détails livraison</h2>
+          <p>
+            Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
+            Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme
+            assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.
+          </p>
+          <p>
+            Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son
+            contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset
+            contenant des passages du Lorem Ipsum...
+          </p>
 
-        {/* Instructions pour la configuration */}
-        <Row className="justify-content-center">
-          <Col md={3} className="mb-3">
-            <Card className="p-3 text-center" style={{ backgroundColor: "#A58DB3" }}>
-              <Card.Title className="fw-bold mb-2" style={{ fontSize: "1rem" }}>
-                1. Déballage
-              </Card.Title>
-              <Card.Text style={{ fontSize: "0.8rem" }}>
-                Le Lorem Ipsum est simplement du faux texte employé.
-              </Card.Text>
-            </Card>
-          </Col>
-          <Col md={3} className="mb-3">
-            <Card className="p-3 text-center" style={{ backgroundColor: "#A58DB3" }}>
-              <Card.Title className="fw-bold mb-2" style={{ fontSize: "1rem" }}>
-                2. Installation
-              </Card.Title>
-              <Card.Text style={{ fontSize: "0.8rem" }}>
-                Le Lorem Ipsum est simplement du faux texte employé.
-              </Card.Text>
-            </Card>
-          </Col>
-          <Col md={3} className="mb-3">
-            <Card className="p-3 text-center" style={{ backgroundColor: "#A58DB3" }}>
-              <Card.Title className="fw-bold mb-2" style={{ fontSize: "1rem" }}>
-                3. Amusez-vous !
-              </Card.Title>
-              <Card.Text style={{ fontSize: "0.8rem" }}>
-                Le Lorem Ipsum est simplement du faux texte employé.
-              </Card.Text>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+          <h3 className="fw-bold mb-4 d-flex justify-content-center">Instructions pour la configuration</h3>
+        </Col>
+      </Row>
+
+      {/* Section Instructions */}
+      <Row className="text-center mb-5">
+        
+
+        {/* Première Card */}
+        <Col md={4} className="d-flex justify-content-center mb-3">
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "#5C23A5",
+              color: "white",
+              borderRadius: "15px",
+              boxshadow: "15px -10px 4px rgba(0, 0, 0, 0.25)",
+              position: "relative",
+              top:"-60px"
+            }}
+          >
+            <Card.Title className="fw-bold mb-3">1. Déballage</Card.Title>
+            <Card.Text style={{ fontStyle: "italic" }}>
+              <strong>
+                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
+                Le Lorem Ipsum est le faux texte standard de l'imprimerie.
+              </strong>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        {/* Deuxième Card */}
+        <Col md={4} className="d-flex justify-content-center mb-3">
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "#5C23A5",
+              color: "white",
+              borderRadius: "15px",
+              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            <Card.Title className="fw-bold mb-3">2. Installation</Card.Title>
+            <Card.Text style={{ fontStyle: "italic" }}>
+              <strong>
+                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
+                Le Lorem Ipsum est le faux texte standard de l'imprimerie.
+              </strong>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        {/* Troisième Card */}
+        <Col md={4} className="d-flex justify-content-center mb-3">
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "#5C23A5",
+              color: "white",
+              borderRadius: "15px",
+              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            <Card.Title className="fw-bold mb-3">3. Amusez-vous !</Card.Title>
+            <Card.Text style={{ fontStyle: "italic" }}>
+              <strong>
+                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
+                Le Lorem Ipsum est le faux texte standard de l'imprimerie.
+              </strong>
+            </Card.Text>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
 
       {/* Section : Assistance en ligne */}
       <Container className="text-center my-4">
