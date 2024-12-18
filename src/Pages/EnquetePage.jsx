@@ -1,20 +1,32 @@
-import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import React from "react";
+import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../App.css'; 
 import { useNavigate } from 'react-router-dom';
+import CustomCarousel from "../components/Carousel";
+import Equipe1Souvenirs from "../assets/equipe_6_souvenirs.jpg";
+import Equipe2Souvenirs from "../assets/Equipe_7_souvenirs.webp";
+
 
 
 const EnquetePage = () => {
     const navigate = useNavigate();
+    
+    const carouselImages = [
+        { src : Equipe1Souvenirs, alt: "Carousel Image 3" },
+        { src : Equipe2Souvenirs, alt: "Carousel Image 4" },
+      ];
+
     return <>
-      <div style={{  color: 'white', padding: '20px' }}>
+    <div style={{ backgroundColor: '#1A0A53', color: 'white', padding: '20px' }}>
+      {/* Banner Section */}
       <section style={{ textAlign: 'center', marginBottom: '50px' }}>
         <img
-          src="/path/to/banner.jpg" // Remplacez par le chemin de l'image de la bannière
+          src="src\assets\Equipe_escape_game_investigation.jpg" // Remplacez par le chemin de l'image de la bannière
           alt="L’Énigme de l’inspecteur disparu"
           style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }}
         />
-        <h1 style={{ position: 'relative', top: '-50px', fontSize: '3em' }}>
+        <h1 style={{ position: 'relative', top: '-250px', fontSize: '3em' }}>
         L’Énigme de l’inspecteur disparu
         </h1>
       </section>
@@ -25,11 +37,12 @@ const EnquetePage = () => {
           display: 'flex',
           justifyContent: 'space-around',
           alignItems: 'flex-start',
-          padding: '30px',
+          padding: '20px',
           backgroundColor: '#29205E',
           borderRadius: '15px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+          boxShadow: '30px 30px 10px -15px rgba(0, 0, 0, 0.25)',
         }}
+        
       >
         {/* Text Content */}
         <div style={{ width: '60%', marginRight: '20px' }}>
@@ -38,7 +51,7 @@ const EnquetePage = () => {
             Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500...
           </p>
 
-          <h3>Tarifs</h3>
+          
           <p>
             Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression...
           </p>
@@ -47,10 +60,10 @@ const EnquetePage = () => {
         {/* Image Section */}
         <div style={{ flexShrink: 0 }}>
           <img
-            src="/path/to/image.jpg" // Remplacez par le chemin de l'image
-            alt="Post-apocalyptic scene"
-            style={{ borderRadius: '15px', width: '300px', height: '400px', objectFit: 'cover' }}
-          />
+            src="src\assets\equipe-escape-game_illustration_enquete.jpg" // Remplacez par le chemin de l'image
+            alt="Detective scene"
+            style={{ borderRadius: '40px', width: '350px', height: '350px', boxShadow: '30px 30px 10px -15px rgba(0, 0, 0, 0.25)', position: 'relative', top: '-100px'}}
+          /><h3>Tarifs 180€ à domicile</h3>
         </div>
       </section>
 
@@ -90,7 +103,7 @@ const EnquetePage = () => {
             fontWeight: 'bold',
           }}
         >
-          Durée
+          120min 
         </div>
       </section>
 
@@ -103,6 +116,7 @@ const EnquetePage = () => {
           borderRadius: '15px',
           margin: '50px auto',
           maxWidth: '800px',
+          boxShadow: '-25px -5px 4px 0 rgba(0, 0, 0, 0.25)',
         }}
       >
         <h3>Vous souhaitez réserver ?</h3>
@@ -115,10 +129,10 @@ const EnquetePage = () => {
             margin: '20px auto',
             width: '100%',
             maxWidth: '600px',
-            height: '200px',
+            height: '250px',
             borderRadius: '15px',
           }}
-        ></div>
+        ><i class="bi bi-calendar3" style={{ fontSize: '10rem' }}></i></div>
         <button
           style={{
             padding: '10px 20px',
@@ -138,91 +152,80 @@ const EnquetePage = () => {
       {/* Vos Souvenirs Section */}
       <section style={{ textAlign: 'center', margin: '50px 0' }}>
         <h2>Vos Souvenirs</h2>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '20px',
-            marginTop: '30px',
-          }}
-        >
-          <div>
-            <img
-              src="/path/to/souvenir1.jpg" // Remplacez par le chemin de l'image 1
-              alt="Souvenir 1"
-              style={{ borderRadius: '15px', width: '300px', height: '200px' }}
-            />
-          </div>
-          <div>
-            <img
-              src="/path/to/souvenir2.jpg" // Remplacez par le chemin de l'image 2
-              alt="Souvenir 2"
-              style={{ borderRadius: '15px', width: '300px', height: '200px' }}
-            />
-          </div>
-        </div>
+
+        <CustomCarousel images={carouselImages} />
+       
       </section>
-     
+   
 
+      {/* Section : Détails Livraison */}
+      <Container fluid className="py-5">
+        <Row className="justify-content-center">
+          <Col md={8}>
+            <Card
+              className="p-4 mb-4"
+              style={{ borderRadius: "15px", backgroundColor: "#A58DB3" }}
+            >
+              <Card.Body>
+                <Card.Title className="fw-bold mb-3">Détails livraison</Card.Title>
+                <Card.Text style={{ fontSize: "0.9rem" }}>
+                  Le Lorem Ipsum est simplement du faux texte employé dans la composition et
+                  la mise en page avant impression.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
-  
-    <Container className="delivery-details">
-      <Row className="mb-4">
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>Détails livraison</Card.Title>
-              <Card.Text>
-                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
+        {/* Instructions pour la configuration */}
+        <Row className="justify-content-center">
+          <Col md={3} className="mb-3">
+            <Card className="p-3 text-center" style={{ backgroundColor: "#A58DB3" }}>
+              <Card.Title className="fw-bold mb-2" style={{ fontSize: "1rem" }}>
+                1. Déballage
+              </Card.Title>
+              <Card.Text style={{ fontSize: "0.8rem" }}>
+                Le Lorem Ipsum est simplement du faux texte employé.
               </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <Row className="mb-4">
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>Instructions pour la configuration</Card.Title>
-              <ol>
-                <li>Déballage: Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.</li>
-                <li>Installation: Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.</li>
-                <li>Amusez-vous ! Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.</li>
-              </ol>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <Row className="mb-4">
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>Assistance en ligne</Card.Title>
-              <Card.Text>
-                Si vous avez besoin d'aide supplémentaire, n'hésitez pas à nous contacter.
+            </Card>
+          </Col>
+          <Col md={3} className="mb-3">
+            <Card className="p-3 text-center" style={{ backgroundColor: "#A58DB3" }}>
+              <Card.Title className="fw-bold mb-2" style={{ fontSize: "1rem" }}>
+                2. Installation
+              </Card.Title>
+              <Card.Text style={{ fontSize: "0.8rem" }}>
+                Le Lorem Ipsum est simplement du faux texte employé.
               </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>Resident Evil</Card.Title>
-              <Card.Text>
-                Pour plus d'informations sur Resident Evil, visitez notre site web.
+            </Card>
+          </Col>
+          <Col md={3} className="mb-3">
+            <Card className="p-3 text-center" style={{ backgroundColor: "#A58DB3" }}>
+              <Card.Title className="fw-bold mb-2" style={{ fontSize: "1rem" }}>
+                3. Amusez-vous !
+              </Card.Title>
+              <Card.Text style={{ fontSize: "0.8rem" }}>
+                Le Lorem Ipsum est simplement du faux texte employé.
               </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
 
-
-
-    </div>
-    
+      {/* Section : Assistance en ligne */}
+      <Container className="text-center my-4">
+        <h5 className="fw-bold mb-3" style={{color: '#fff'}}>Assistance en ligne</h5>
+        <Button
+          variant="primary"
+          style={{
+            borderRadius: "20px",
+            padding: "10px 40px",
+            backgroundColor: "#A58DB3",
+            border: "none",
+          }}
+        > <i className="bi bi-headset" style={{ fontSize: '1rem' }}></i> Horaire : 9H 12H – 14H 00H</Button>
+      </Container>
+     </div>
     </>;
 }
  

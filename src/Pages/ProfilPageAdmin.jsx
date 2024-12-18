@@ -1,39 +1,87 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import customerService from '../../services/customerService';
 import contactService from '../../services/contactService';
 import gameService from '../../services/gameService';
+import reservationService from '../../services/reservationService';
 import '../App.css';
+import adminService from '../../services/adminService';
 
 const AdminPage = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [contactMessages, setContactMessages] = useState([]);
   const [escapeGames, setEscapeGames] = useState([]);
   const [selectedGame, setSelectedGame] = useState(null);
   const [activeTab, setActiveTab] = useState('users');
+  const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
-    fetchUsers();
-    fetchContactMessages();
-    fetchEscapeGames();
-  }, []);
+    const adminToken = localStorage.getItem('adminToken');
+    const isAdmin = localStorage.getItem('isAdmin');
 
-  const fetchUsers = async () => {
+    
+    if (!adminToken || isAdmin !== 'true') {
+      console.error('Token admin manquant ou accès non autorisé');
+      navigate('/AdminLogin');
+      return;
+    }
+  
+    fetchData();
+  }, [navigate]);
+  
+  const fetchData = async () => {
     try {
-      const response = await customerService.getAllCustomers();
-      console.log(response.data);
-      setUsers(response.data);
+      await Promise.all([
+        fetchUsers(),
+        fetchContactMessages(),
+        fetchEscapeGames(),
+        fetchReservations()
+      ]);
     } catch (error) {
-      console.error('Erreur lors de la récupération des utilisateurs :', error);
+      console.error('Erreur lors de la récupération des données :', error);
+      handleError(error);
     }
   };
+
+  const fetchUsers = async () => {
+    const adminToken = localStorage.getItem('adminToken');
+    if (!adminToken) {
+        console.error('Token admin manquant');
+        navigate('/AdminLogin');
+        return;
+    }
+
+    // Vérifiez si le token est expiré
+    const isTokenExpired = (token) => {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.exp * 1000 < Date.now();
+    };
+
+    if (isTokenExpired(adminToken)) {
+        console.error('Token expiré');
+        localStorage.removeItem('adminToken');
+        navigate('/AdminLogin');
+        return;
+    }
+
+    try {
+        const response = await adminService.getAllUsers(); // Assurez-vous que cette méthode utilise le token
+        console.log('Utilisateurs récupérés:', response);
+        setUsers(response.data);
+    } catch (error) {
+        handleError(error);
+    }
+};
+
 
   const fetchContactMessages = async () => {
     try {
       const response = await contactService.getAllMessages();
       setContactMessages(response.data);
     } catch (error) {
-      console.error('Erreur lors de la récupération des messages :', error);
+      handleError(error);
     }
   };
 
@@ -42,9 +90,30 @@ const AdminPage = () => {
       const response = await gameService.getAllGames();
       setEscapeGames(response.data);
     } catch (error) {
-      console.error('Erreur lors de la récupération des escape games :', error);
+      handleError(error);
     }
   };
+
+  const fetchReservations = async () => {
+    try {
+      const response = await reservationService.getAllReservations();
+      setReservations(response.data);
+    } catch (error) {
+      handleError(error);
+    }
+  };
+  
+  const handleError = (error) => {
+    console.error('Erreur :', error);
+    if (error.response) {
+        if (error.response.status === 401) {
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('isAdmin');
+            navigate('/AdminLogin');
+        }
+    }
+};
+
 
   const handleUserUpdate = async () => {
     if (!selectedUser) return;
@@ -67,6 +136,19 @@ const AdminPage = () => {
         fetchUsers();
       } catch (error) {
         console.error('Erreur lors de la suppression :', error);
+        alert('Une erreur est survenue lors de la suppression.');
+      }
+    }
+  };
+
+  const handleMessageDelete = async (messageId) => {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer ce message ?')) {
+      try {
+        await contactService.deleteMessage(messageId);
+        alert('Message supprimé avec succès !');
+        fetchContactMessages();
+      } catch (error) {
+        console.error('Erreur lors de la suppression du message :', error);
         alert('Une erreur est survenue lors de la suppression.');
       }
     }
@@ -102,9 +184,11 @@ const AdminPage = () => {
     const newGame = {
       name: 'Nouveau jeu',
       description: 'Description du nouveau jeu',
-      price_per_person: 0,
-      max_players: 6,
+      goal: 'Objectif du jeu',
       duration: 60,
+      max_players: 6,
+      price_per_person: 25,
+      category_id: 1,
     };
     try {
       await gameService.addGame(newGame);
@@ -116,6 +200,8 @@ const AdminPage = () => {
     }
   };
 
+
+  
   return (
     <div style={{ backgroundColor: '#9F8FBF', minHeight: '100vh', padding: '20px' }}>
       <h1 style={{ textAlign: 'center', color: '#29205E', marginBottom: '40px' }}>
@@ -159,10 +245,24 @@ const AdminPage = () => {
             color: 'white',
             border: 'none',
             borderRadius: '5px',
+            marginRight: '10px',
             cursor: 'pointer',
           }}
         >
           Escape Games
+        </button>
+        <button
+          onClick={() => setActiveTab('reservations')}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: activeTab === 'reservations' ? '#6A2C9B' : '#29205E',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+          }}
+        >
+          Réservations
         </button>
       </div>
 
@@ -293,7 +393,7 @@ const AdminPage = () => {
           <ul style={{ listStyle: 'none', padding: 0 }}>
             {contactMessages.map((message) => (
               <li
-                key={message.id}
+                key={message.id_contact}
                 style={{
                   padding: '10px',
                   margin: '5px 0',
@@ -305,6 +405,20 @@ const AdminPage = () => {
                 <p><strong>De :</strong> {message.name} ({message.email})</p>
                 <p><strong>Date :</strong> {new Date(message.created_at).toLocaleString()}</p>
                 <p><strong>Message :</strong> {message.message}</p>
+                <button
+                  onClick={() => handleMessageDelete(message.id_contact)}
+                  style={{
+                    padding: '5px 10px',
+                    backgroundColor: '#29205E',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    marginTop: '10px',
+                  }}
+                >
+                  Supprimer
+                </button>
               </li>
             ))}
           </ul>
@@ -406,6 +520,16 @@ const AdminPage = () => {
                     style={{ width: '100%', padding: '5px', borderRadius: '5px', minHeight: '100px' }}
                   />
                 </div>
+
+                <div style={{ marginBottom: '10px' }}>
+        <label>Objectif</label>
+        <input
+          type="text"
+          value={selectedGame.goal}  // Ajout du champ goal ici
+          onChange={(e) => setSelectedGame({ ...selectedGame, goal: e.target.value })}
+          style={{ width: '100%', padding: '5px', borderRadius: '5px' }}
+        />
+      </div>
                 <div style={{ marginBottom: '10px' }}>
                   <label>Prix par personne</label>
                   <input
@@ -451,9 +575,35 @@ const AdminPage = () => {
           )}
         </div>
       )}
+
+      {activeTab === 'reservations' && (
+        <div>
+          <h2 style={{ color: '#29205E' }}>Réservations</h2>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {reservations.map((reservation) => (
+              <li
+                key={reservation.id_reservation}
+                style={{
+                  padding: '10px',
+                  margin: '5px 0',
+                  backgroundColor: '#4A2B8C',
+                  color: 'white',
+                  borderRadius: '10px',
+                }}
+              >
+                <p><strong>Client :</strong> {reservation.customer_id}</p>
+                <p><strong>Escape Game :</strong> {reservation.escape_game_name}</p>
+                <p><strong>Date :</strong> {new Date(reservation.reservation_date).toLocaleDateString()}</p>
+                <p><strong>Heure :</strong> {reservation.reservation_time}</p>
+                <p><strong>Nombre de joueurs :</strong> {reservation.number_of_players}</p>
+                <p><strong>Prix total :</strong> {reservation.total_price}€</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
 
 export default AdminPage;
-

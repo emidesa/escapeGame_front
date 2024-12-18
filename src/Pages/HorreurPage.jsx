@@ -10,9 +10,6 @@ import GameCardPages from "../components/GameCardPages";
 
 
 
-
-
-
 const HorreurPage = () => {
   const navigate = useNavigate();
 
@@ -35,6 +32,7 @@ const HorreurPage = () => {
         priceDescription="Les tarifs commencent à partir de 20€/personne."
         buttonText="Réservez ici !"
       />
+
 
     <ChallengeBadge stars={3} duration="60 min" />
 

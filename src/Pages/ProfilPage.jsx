@@ -42,14 +42,15 @@ const ProfilPage = () => {
 
     const fetchUserReservations = async (userId) => {
         try {
-            const response = await reservationService.getAllReservations(userId);
-            console.log("Reservations data received:", response.data); // Log pour vérifier les données
-
+            console.log("Fetching reservations for user ID:", userId); // Ajoute un log pour vérifier l'ID utilisateur
+            const response = await reservationService.getReservation(userId);
+            console.log("Reservations data received:", response.data); // Ajoute un log pour vérifier les réservations
             setReservations(response.data);
         } catch (error) {
             console.error("Erreur lors de la récupération des réservations", error);
         }
     };
+    
 
     const checkTokenValidity = () => {
         const token = localStorage.getItem('token');
@@ -120,6 +121,7 @@ const ProfilPage = () => {
     const handleLogout = () => {
         localStorage.removeItem('userId');
         localStorage.removeItem('token');
+        navigate('/login');
     };
 
     const handleCancelReservation = async (reservationId) => {
@@ -362,7 +364,7 @@ const ProfilPage = () => {
                                 marginBottom: '20px'
                             }}>
                                 <p><strong>Escape Game:</strong> {reservation.escape_game_name}</p>
-                                <p><strong>Date:</strong> {format(new Date(reservation.reservation_date), 'dd/MM/yyyy')}</p>
+                                <p><strong>Date:</strong> {new Date(reservation.reservation_date).toLocaleDateString('fr-FR')}</p>
                                 <p><strong>Heure:</strong> {reservation.reservation_time}</p>
                                 <p><strong>Nombre de joueurs:</strong> {reservation.number_of_players}</p>
                                 <p><strong>Prix total:</strong> {reservation.total_price}€</p>
@@ -396,4 +398,3 @@ const ProfilPage = () => {
 };
 
 export default ProfilPage;
-
