@@ -152,9 +152,11 @@ const ReservationPage = () => {
   };
 
   const isSlotAvailable = (day, time) => {
-    const date = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const date = new Date(currentYear, currentMonth, day);
+    const formattedDate = date.toISOString().split('T')[0]; // Format YYYY-MM-DD
+  
     return !reservations.some(
-      (r) => r.reservation_date === date && r.reservation_time === time
+      (r) => r.reservation_date === formattedDate && r.reservation_time === time
     );
   };
 
