@@ -1,19 +1,23 @@
-const GameCardPages = ({ title, description, imageSrc, priceTitle, priceDescription, buttonText }) => {
+const GameCardPages = ({  title,  description,  imageSrc,  priceTitle, tariffsText,  buttonText }) => {
     return <>
         <div style={styles.container}>
-            {/* carte avec l'image */}
-            <div style={styles.cardImage}>
-                <img src={imageSrc} alt={title} style={styles.image} />
-            </div>
-
-            {/* carte principale */}
+            {/* Card principale */}
             <div style={styles.cardPrincipal}>
-                <div style={styles.textContainer}>
-                    <h3 style={styles.priceTitle}>{priceTitle}</h3>
-                    <p style={styles.priceDescription}>{priceDescription}</p>
+                <div style={styles.content}>
                     <h2 style={styles.title}>{title}</h2>
                     <p style={styles.description}>{description}</p>
-                    <button style={styles.button}>{buttonText}</button>
+                </div>
+
+                {/* Bouton en bas à droite */}
+                <button style={styles.button}>{buttonText}</button>
+            </div>
+
+            {/* Card image avec section tarifs */}
+            <div style={styles.cardImageContainer}>
+                <img src={imageSrc} alt={title} style={styles.cardImage} />
+                <div style={styles.tariffsSection}>
+                    <h3 style={styles.tariffsTitle}>{priceTitle}</h3>
+                    <p style={styles.tariffsDescription}>{tariffsText}</p>
                 </div>
             </div>
         </div>
@@ -22,67 +26,81 @@ const GameCardPages = ({ title, description, imageSrc, priceTitle, priceDescript
 
 const styles = {
     container: {
-        position: 'relative', // container des deux cartes
-        width: '600px',
-        margin: '100px auto',
-        height: '350px',
-    },
-    cardImage: {
-        position: 'absolute',
-        top: '-20px', // décalage vers le haut
-        left: '-40px', // chevauchement au niveau du coin gauche
-        zIndex: 2, // la carte secondaire passe AU-DESSUS de la carte principale
-        borderRadius: '15px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
-    },
-    image: {
-        width: '150px',
-        height: '220px',
-        borderRadius: '15px',
-        objectFit: 'cover',
+        paddingTop: '400px',
+        position: 'relative',
+        width: '900px',
+        margin: '50px auto',
     },
     cardPrincipal: {
-        backgroundColor: '#B08DFF',
-        borderRadius: '20px',
+        backgroundColor: '#AAA1C8',
+        borderRadius: '30px',
         padding: '30px',
-        paddingLeft: '150px', // décale mon texte à droite pour s'adapter à l'image
+        paddingTop: '30px',
+        paddingLeft: '350px', // fait de l'espace à gauche pour l'image
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-        zIndex: 1, // en dessous de ma carte image
+        zIndex: 1,
         position: 'relative',
-        height: '100%',
+        height: '400px',
     },
-    textContainer: {
+    content: {
         color: '#1A0A53',
-    },
-    priceTitle: {
-        fontSize: '1.2rem',
-        fontWeight: 'bold',
-        marginBottom: '10px',
-    },
-    priceDescription: {
-        fontSize: '0.9rem',
-        marginBottom: '20px',
     },
     title: {
         fontSize: '1.8rem',
         fontWeight: 'bold',
-        marginBottom: '10px',
+        marginBottom: '20px',
     },
     description: {
         lineHeight: '1.5',
-        marginBottom: '20px',
+        fontSize: '1rem',
     },
     button: {
-        backgroundColor: '#6A2C9B',
-        color: '#FFF',
+        backgroundImage: 'linear-gradient(to right, #9929BD, #701E8A, #461357)', // backgroundImage dans la page.jsx ne fonctionne pas si on veut un dégradé de pluieurs couleurs
+        color: '#FFF8F0',
         border: 'none',
-        borderRadius: '30px',
+        borderRadius: '10px',
         padding: '10px 20px',
         cursor: 'pointer',
         fontSize: '1rem',
+        position: 'absolute',
+        bottom: '-20px', // pour que mon bouton soit à moitié dehors de ma card principale
+        left: '60%', // pour placer mon bouton comme je le souhaite
+        transform: 'translateX(-50%)', // vient ajuster mon bouton
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
     },
+    cardImageContainer: {
+        position: 'absolute',
+        top: '150px',
+        left: '15px',
+        zIndex: 2,
+        textAlign: 'center',
+    },
+    cardImage: {
+        width: '320px',
+        height: '450px',
+        borderRadius: '40px',
+        objectFit: 'cover',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+    },
+    tariffsSection: {
+        marginTop: '20px',
+        backgroundColor: '#AAA1C8',
+        padding: '15px',
+        borderRadius: '10px',
+        width: '220px',
+        margin: '0 auto',
+        textAlign: 'center',
+    },
+    tariffsTitle: {
+        fontWeight: 'bold',
+        fontSize: '1.1rem',
+        marginBottom: '10px',
+        color: '#192942',
+    },
+    tariffsDescription: {
+        fontSize: '0.9rem',
+        color: '#192942',
+    },
 };
-
 
 export default GameCardPages;

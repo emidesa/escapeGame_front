@@ -25,11 +25,11 @@ const HorreurPage = () => {
     />
     <div style={{ margin: '30px auto', padding: '0 20px', maxWidth:'1200px'}}>
       <GameCardPages
-        title="Sauvez ce qu'il reste de l'humanité !"
-        description="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page..."
+        title="Oserez-vous explorer ce manoir hanté et échapper aux secrets qui y rôdent ?  !"
+        description="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte."
         imageSrc={backgroundImage}
         priceTitle="Tarifs"
-        priceDescription="Les tarifs commencent à partir de 20€/personne."
+        priceDescription="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte"
         buttonText="Réservez ici !"
       />
 
