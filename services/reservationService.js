@@ -23,10 +23,11 @@ function getAllReservations() {
     return axiosInstance.get(`${API_URL}/AllReservations/`);
   }
 
-  function getReservation(id) {
-    return axiosInstance.get(`${API_URL}/reservation/${id}`);
+  function getReservation(userId) {
+    return axiosInstance.get(`${API_URL}/userReservations/${userId}`);
   }
 
+  
 function addReservation(reservationData) {
   return axiosInstance.post(`${API_URL}/addReservation`, reservationData);
 }

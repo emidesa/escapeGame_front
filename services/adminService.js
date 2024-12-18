@@ -54,11 +54,11 @@ const adminService = {
       }
       try {
         const response = await axios.get(`${API_URL}/allCustomers`, {
-          headers: {
-            Authorization: `Bearer ${adminToken}`, // Utilisez 'adminToken' en minuscule
-          },
-        });
-        
+  headers: {
+    Authorization: `Bearer ${adminToken}`, // Utilisez 'adminToken' en minuscule
+  },
+});
+
         return response.data;
       } catch (error) {
         console.error('Erreur lors de la récupération des utilisateurs :', error.response?.data || error.message);
