@@ -1,0 +1,38 @@
+.booking-panel {
+    background-color: #9E8CD8;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    margin: 30px auto;
+    margin-top: 250px;
+    margin-bottom: 30px;
+  }
+  
+  .booking-panel h3 {
+    color: #1A0A53;
+    font-weight: bold;
+  }
+  
+  .booking-panel p {
+    color: #1A0A53;
+    margin: 15px 0;
+  }
+  
+  
+  .booking-button {
+    background-color: #9F42CC;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .booking-button:hover {
+    background-color: #842BAF;
+  }
+  
+  

@@ -1,0 +1,48 @@
+.challenge-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #9E8CD8;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  max-width: 600px;
+  margin: 30px auto;
+  margin-top: 250px;
+  margin-bottom: 30px;
+}
+
+.challenge-content h3 {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #1A0A53;
+}
+
+.stars {
+  display: flex;
+  font-size: 1.5em;
+}
+
+.star-filled {
+  color: #FFD700;
+}
+
+.star-empty {
+  color: #ccc;
+}
+
+.duration-circle {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background-color: #A5C8FA;
+  color: #1A0A53;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+  
