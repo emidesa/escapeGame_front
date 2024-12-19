@@ -48,12 +48,12 @@ const EnquetePage = () => {
         <div style={{ width: '60%', marginRight: '20px' }}>
           <h2>Entrez dans la peau d’un détective et résolvez un crime qui semble impossible ...</h2>
           <p style={{ lineHeight: '1.6', margin: '20px 0' }}>
-            Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500...
+          Dans une petite ville paisible, le calme est brusquement rompu par un crime effroyable. Un riche industriel est retrouvé mort dans son manoir, laissant les habitants en état de choc. La police locale, débordée, fait appel à une équipe d’enquêteurs d’élite : vous.
           </p>
 
           
           <p>
-            Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression...
+          En tant qu'équipe d'enquêteurs d'élite, votre mission est de résoudre l'énigme du meurtre de minuit. Vous avez 120 minutes pour fouiller le manoir, analyser les indices, interroger les suspects et reconstituer les événements de cette nuit fatidique. L'objectif ultime est de découvrir l'identité du meurtrier et de rassembler les preuves nécessaires pour le confondre avant que le temps ne s'écoule. Utilisez votre esprit d'observation, votre logique et votre sens de la déduction pour élucider ce mystère et rétablir la justice.
           </p>
         </div>
 
@@ -145,13 +145,12 @@ const EnquetePage = () => {
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
             marginTop: '20px',
           }} onClick={() => navigate('/reservation')}>
-          Réserver
+          Réservez ici !
         </button>
       </section>
 
       {/* Vos Souvenirs Section */}
       <section style={{ textAlign: 'center', margin: '50px 0' }}>
-        <h2>Vos Souvenirs</h2>
 
         <CustomCarousel images={carouselImages} />
        
@@ -159,61 +158,114 @@ const EnquetePage = () => {
    
 
       {/* Section : Détails Livraison */}
-      <Container fluid className="py-5">
-        <Row className="justify-content-center">
-          <Col md={8}>
-            <Card
-              className="p-4 mb-4"
-              style={{ borderRadius: "15px", backgroundColor: "#A58DB3" }}
-            >
-              <Card.Body>
-                <Card.Title className="fw-bold mb-3">Détails livraison</Card.Title>
-                <Card.Text style={{ fontSize: "0.9rem" }}>
-                  Le Lorem Ipsum est simplement du faux texte employé dans la composition et
-                  la mise en page avant impression.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+      <Container fluid className="py-5" style={{ color: "white" }}>
+      {/* Section Détails livraison */}
+      <Row className="justify-content-center mb-5">
+        <Col md={10} className="p-4 rounded" style={{ backgroundColor: "#D3C5E5", color: "#1E0D3F", height:"500px", boxShadow: "-40px -15px 4px rgba(0, 0, 0, 0.25)", }}>
+          <h2 className="fw-bold">Détails livraison</h2>
+          <p> Votre escape game à domicile est conçu pour être facilement livré et prêt à jouer.
+          Voici les informations concernant la livraison :</p>
 
-        {/* Instructions pour la configuration */}
-        <Row className="justify-content-center">
-          <Col md={3} className="mb-3">
-            <Card className="p-3 text-center" style={{ backgroundColor: "#A58DB3" }}>
-              <Card.Title className="fw-bold mb-2" style={{ fontSize: "1rem" }}>
-                1. Déballage
-              </Card.Title>
-              <Card.Text style={{ fontSize: "0.8rem" }}>
-                Le Lorem Ipsum est simplement du faux texte employé.
-              </Card.Text>
-            </Card>
-          </Col>
-          <Col md={3} className="mb-3">
-            <Card className="p-3 text-center" style={{ backgroundColor: "#A58DB3" }}>
-              <Card.Title className="fw-bold mb-2" style={{ fontSize: "1rem" }}>
-                2. Installation
-              </Card.Title>
-              <Card.Text style={{ fontSize: "0.8rem" }}>
-                Le Lorem Ipsum est simplement du faux texte employé.
-              </Card.Text>
-            </Card>
-          </Col>
-          <Col md={3} className="mb-3">
-            <Card className="p-3 text-center" style={{ backgroundColor: "#A58DB3" }}>
-              <Card.Title className="fw-bold mb-2" style={{ fontSize: "1rem" }}>
-                3. Amusez-vous !
-              </Card.Title>
-              <Card.Text style={{ fontSize: "0.8rem" }}>
-                Le Lorem Ipsum est simplement du faux texte employé.
-              </Card.Text>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+          <ul>
+                <li><strong>Mode de livraison :</strong> Livraison à domicile via transporteur sécurisé ou retrait en point relais.</li>
+                <li><strong>Contenu de la boîte :</strong>
+                  <ul>
+                    <li>1. Instructions pour le déroulement du jeu.</li>
+                    <li>2. Accessoires nécessaires (cartes, énigmes, décorations).</li>
+                    <li>3. Support numérique (QR codes, liens web ou clé USB avec vidéos/audios).</li>
+                  </ul>
+                </li>
+                <p></p>
+                <li><strong>Délai de livraison :</strong> Entre 3 à 5 jours ouvrés après la commande.</li>
+                <li><strong>Contact en cas de problème :</strong> Une assistance est disponible via un numéro de téléphone ou un e-mail dédié.</li>
+              </ul>
+
+          <h3 className="fw-bold mb-4 d-flex justify-content-center" style={{color:"#192942"}}>Instructions pour la configuration</h3>
+        </Col>
+      </Row>
+
+      {/* Section Instructions */}
+      <Row className="text-center mb-5">
+        
+
+        {/* Première Card */}
+        <Col md={4} className="d-flex justify-content-center mb-3">
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "#5C23A5",
+              color: "white",
+              borderRadius: "15px",
+              width:"350px",
+              height:"350px",
+              boxShadow: "15px -10px 4px rgba(0, 0, 0, 0.25)",
+              position: "relative",
+              top:"-150px",
+              marginLeft:"30px"
+            }}
+          >
+            <Card.Title className="fw-bold mb-3" style={{color: '#fff'}}>1. Déballage</Card.Title>
+            <Card.Text style={{ fontStyle: "italic" }}>
+              <strong>
+              Ouvrez soigneusement la boîte et vérifiez que tous les éléments listés dans le guide d'inventaire sont présents. Consultez le guide d’installation inclus pour avoir une vue d’ensemble des étapes à suivre.
+              </strong>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        {/* Deuxième Card */}
+        <Col md={4} className="d-flex justify-content-center mb-3">
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "#5C23A5",
+              color: "white",
+              borderRadius: "15px",
+              width:"350px",
+              height:"350px",
+              boxShadow: "15px -10px 4px rgba(0, 0, 0, 0.25)",
+               position: "relative",
+              top:"-150px",
+              marginLeft:"30px"
+            }}
+          >
+            <Card.Title className="fw-bold mb-3" style={{color: '#fff'}}>2. Installation</Card.Title>
+            <Card.Text style={{ fontStyle: "italic" }}>
+              <strong>
+              Choisissez votre espace de jeu. Positionnez les accessoires, cachez les indices et thématisez la pièce avec les décorations incluses. Testez les énigmes avant l’arrivée des joueurs.
+              </strong>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        {/* Troisième Card */}
+        <Col md={4} className="d-flex justify-content-center mb-3">
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "#5C23A5",
+              color: "white",
+              borderRadius: "15px",
+              width:"320px",
+              height:"350px",
+              boxShadow: "15px -10px 4px rgba(0, 0, 0, 0.25)",
+               position: "relative",
+              top:"-150px"
+            }}
+          >
+            <Card.Title className="fw-bold mb-3" style={{color: '#fff'}}>3. Amusez-vous !</Card.Title>
+            <Card.Text style={{ fontStyle: "italic" }}>
+              <strong>
+              Accueillez vos joueurs et démarrez l’escape game. Suivez le guide pour donner des indices si besoin, et partagez un moment convivial avec vos proches !
+              </strong>
+            </Card.Text>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
 
       {/* Section : Assistance en ligne */}
-      <Container className="text-center my-4">
+      <Container className="text-center my-4 mb-5">
         <h5 className="fw-bold mb-3" style={{color: '#fff'}}>Assistance en ligne</h5>
         <Button
           variant="primary"
@@ -223,7 +275,8 @@ const EnquetePage = () => {
             backgroundColor: "#A58DB3",
             border: "none",
           }}
-        > <i className="bi bi-headset" style={{ fontSize: '1rem' }}></i> Horaire : 9H 12H – 14H 00H</Button>
+          onClick={() => navigate('/contact')}
+        > <i className="bi bi-headset" style={{ fontSize: '1rem' }} ></i> Horaire : 9H 12H – 14H 00H</Button>
       </Container>
      </div>
     </>;
