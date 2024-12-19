@@ -1,23 +1,27 @@
-const GameCardPages = ({  title,  description,  imageSrc,  priceTitle, tariffsText,  buttonText }) => {
+import { useNavigate } from "react-router-dom";
+import '../GameCardPages.css';
+const GameCardPages = ({ title, description, goal, imageSrc, priceTitle, priceDescription, buttonText }) => {
+    const navigate = useNavigate();
     return <>
         <div style={styles.container}>
-            {/* Card principale */}
+            {/* ma card principal */}
             <div style={styles.cardPrincipal}>
                 <div style={styles.content}>
                     <h2 style={styles.title}>{title}</h2>
                     <p style={styles.description}>{description}</p>
+
+                    {/* Ajout de l'objectif final */}
+                    {goal && <p style={styles.goal}>{goal}</p>}
+                </div>
+                <button className="button" onClick={() => navigate('/reservation')}>{buttonText}</button>
                 </div>
 
-                {/* Bouton en bas à droite */}
-                <button style={styles.button}>{buttonText}</button>
-            </div>
-
-            {/* Card image avec section tarifs */}
+            {/* ma section tarifs */}
             <div style={styles.cardImageContainer}>
                 <img src={imageSrc} alt={title} style={styles.cardImage} />
                 <div style={styles.tariffsSection}>
                     <h3 style={styles.tariffsTitle}>{priceTitle}</h3>
-                    <p style={styles.tariffsDescription}>{tariffsText}</p>
+                    <p style={styles.tariffsDescription}>{priceDescription}</p>
                 </div>
             </div>
         </div>
@@ -37,7 +41,7 @@ const styles = {
         padding: '30px',
         paddingTop: '30px',
         paddingLeft: '350px', // fait de l'espace à gauche pour l'image
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+        boxShadow: '23px 20px 24px rgba(0, 0, 0, 0.7)',
         zIndex: 1,
         position: 'relative',
         height: '400px',
@@ -51,22 +55,15 @@ const styles = {
         marginBottom: '20px',
     },
     description: {
+
+        fontSize: '1rem',
+        color: '#1A0A53',
+        fontWeight: 'bold',
+        marginTop: '20px', 
+    },
+    goal: {
         lineHeight: '1.5',
         fontSize: '1rem',
-    },
-    button: {
-        backgroundImage: 'linear-gradient(to right, #9929BD, #701E8A, #461357)', // backgroundImage dans la page.jsx ne fonctionne pas si on veut un dégradé de pluieurs couleurs
-        color: '#FFF8F0',
-        border: 'none',
-        borderRadius: '10px',
-        padding: '10px 20px',
-        cursor: 'pointer',
-        fontSize: '1rem',
-        position: 'absolute',
-        bottom: '-20px', // pour que mon bouton soit à moitié dehors de ma card principale
-        left: '60%', // pour placer mon bouton comme je le souhaite
-        transform: 'translateX(-50%)', // vient ajuster mon bouton
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
     },
     cardImageContainer: {
         position: 'absolute',
@@ -80,7 +77,7 @@ const styles = {
         height: '450px',
         borderRadius: '40px',
         objectFit: 'cover',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+        boxShadow: '-4px -4px 8px rgba(0, 0, 0, 0.5)',
     },
     tariffsSection: {
         marginTop: '20px',

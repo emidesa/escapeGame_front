@@ -1,11 +1,14 @@
 .challenge-badge {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #9E8CD8;
+  flex-direction: column; /* met le texte et les étoiles en colonne */
+  align-items: center; /* vient centré horizontalement */
+  justify-content: center; /* vient centré verticalement */
+  text-align: center; /* met le texte bien au centre */
+  position: relative; /* évite de faire bouger mon cercle 'durée' */
+  background-color: #AAA1C8;
   border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  box-shadow: 10px 15px 6px rgba(0, 0, 0, 0.7);
   position: relative;
   max-width: 600px;
   margin: 30px auto;
@@ -15,14 +18,17 @@
 
 .challenge-content h3 {
   margin: 0;
-  font-size: 1.2em;
+  font-size: 2em;
   font-weight: bold;
-  color: #1A0A53;
+  color: #192942;
 }
 
 .stars {
   display: flex;
-  font-size: 1.5em;
+  justify-content: center; 
+  gap: 10px; /* l'espace entre chaqu'une de mes étoiles */
+  font-size: 3.5em; /* la taille des étoiles */
+  margin-top: 10px; 
 }
 
 .star-filled {
@@ -35,14 +41,12 @@
 
 .duration-circle {
   position: absolute;
-  top: -20px;
+  top: -50px;
   right: -20px;
-  background-color: #A5C8FA;
-  color: #1A0A53;
+  background-color: #ACC8E5;
+  color: #192942;
   font-weight: bold;
-  padding: 10px 20px;
+  padding:30px 20px;
   border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-  
+  box-shadow: 10px 23px 7px rgba(0, 0, 0, 0.7);
+} 

@@ -1,38 +1,45 @@
 .booking-panel {
-    background-color: #9E8CD8;
-    border-radius: 15px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    max-width: 700px;
-    margin: 30px auto;
-    margin-top: 250px;
-    margin-bottom: 30px;
+  background-color: #AAA1C8;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: -10px -20px 8px rgba(0, 0, 0, 0.7);
+  max-width: 600px;
+  margin: 30px auto;
+  margin-top: 250px;
+  margin-bottom: 30px;
+  position: relative; /* permet de positionner mon bouton relativement à ma card (obligé d'être en position relative pour que la position absolute fonctionne sur mon bouton */
   }
   
   .booking-panel h3 {
-    color: #1A0A53;
+    color: #192942;
+    font-size: 2em;
     font-weight: bold;
   }
   
   .booking-panel p {
-    color: #1A0A53;
+    color: #192942;
     margin: 15px 0;
   }
   
   
   .booking-button {
-    background-color: #9F42CC;
-    color: white;
+    background: linear-gradient(to right, #9929BD, #701E8A, #461357);
+    color: #FFF8F0;
     font-weight: bold;
     border: none;
     border-radius: 15px;
     padding: 10px 20px;
     cursor: pointer;
+    position: absolute; 
+    bottom: -20px; 
+    left: 40%; 
+    transform: translateX(-5%); /* aide à ajuster le centre de mon  bouton */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
   }
   
   .booking-button:hover {
-    background-color: #842BAF;
+    background: linear-gradient(to right, #9929BD, #461357, #701E8A);
   }
   
   
