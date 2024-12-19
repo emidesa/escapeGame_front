@@ -4,7 +4,6 @@ import backgroundImage2 from '../assets/equipe-escape-game_illustration-horreur2
 import Equipe1Souvenirs from "../assets/equipe_4_souvenirs.png";
 import Equipe2Souvenirs from "../assets/equipe_5_souvenirs.png";
 import CustomCarousel from '../components/Carousel';
-import { useNavigate } from "react-router-dom";
 import ChallengeBadge from "../components/ChallengeBadge";
 import BookingPanel from "../components/BookingPanel";
 import GameCardPages from "../components/GameCardPages";
@@ -13,7 +12,6 @@ import GamePlaceholderCard from "../components/GamePlaceholderCard";
 
 
 const HorreurPage = () => {
-  const navigate = useNavigate();
 
   const carouselImages = [
     { src: Equipe1Souvenirs, alt: "Carousel Image 1" },

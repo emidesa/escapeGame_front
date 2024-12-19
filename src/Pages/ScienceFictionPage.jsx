@@ -4,14 +4,12 @@ import backgroundImage2 from '../assets/intérieur vaisseau star wars.jpg';
 import Equipe5Souvenirs from "../assets/carouselStarwars1.jpg";
 import Equipe6Souvenirs from "../assets/carouselStarWars2.jpg";
 import CustomCarousel from '../components/Carousel';
-import { useNavigate } from "react-router-dom";
 import ChallengeBadge from "../components/ChallengeBadge";
 import BookingPanel from "../components/BookingPanel";
 import GameCardPages from "../components/GameCardPages";
 import GamePlaceholderCard from "../components/GamePlaceholderCard";
 
 const ScienceFiction = () => {
-    const navigate = useNavigate();
 
     const carouselImages = [
         { src: Equipe5Souvenirs, alt: "Carousel Image 1" },

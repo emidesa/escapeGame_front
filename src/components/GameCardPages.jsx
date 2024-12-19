@@ -10,13 +10,13 @@ const GameCardPages = ({ title, description, goal, imageSrc, priceTitle, priceDe
                     <h2 style={styles.title}>{title}</h2>
                     <p style={styles.description}>{description}</p>
 
-                    {/* Ajout de l'objectif final */}
+
                     {goal && <p style={styles.goal}>{goal}</p>}
                 </div>
                 <button className="button" onClick={() => navigate('/reservation')}>{buttonText}</button>
                 </div>
 
-            {/* ma section tarifs */}
+            {/* tarifs */}
             <div style={styles.cardImageContainer}>
                 <img src={imageSrc} alt={title} style={styles.cardImage} />
                 <div style={styles.tariffsSection}>

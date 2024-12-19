@@ -21,13 +21,13 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  /* Effet de survol */
+
   .carousel-card:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
   }
   
-  /* Style de l'image pour l'adapter dans la carte */
+ 
   .carousel-image {
     width: 490px;
     height: 460px;
@@ -35,7 +35,7 @@
     border-radius: 10px;
   }
   
-  /* Réduire la taille de l'image pour la centrer dans la carte */
+  /* pour réduire la taille mon image pour la centrer dans la card*/
   .carousel-item {
     text-align: center;
   }

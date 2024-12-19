@@ -4,14 +4,12 @@ import backgroundImage2 from '../assets/gameofthronesdragon.jpg';
 import Equipe7Souvenirs from "../assets/carouselGOF1.webp";
 import Equipe8Souvenirs from "../assets/carouselGOF2.avif";
 import CustomCarousel from '../components/Carousel';
-import { useNavigate } from "react-router-dom";
 import ChallengeBadge from "../components/ChallengeBadge";
 import BookingPanel from "../components/BookingPanel";
 import GameCardPages from "../components/GameCardPages";
 import GamePlaceholderCard from "../components/GamePlaceholderCard";
 
 const Fantastique = () => {
-    const navigate = useNavigate();
 
     const carouselImages = [
         { src: Equipe7Souvenirs, alt: "Carousel Image 1" },

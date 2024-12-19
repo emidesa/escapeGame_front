@@ -5,14 +5,12 @@ import Equipe9Souvenirs from "../assets/carouselHarryPotter1.jpg";
 import Equipe10Souvenirs from "../assets/carouselHarryPotter2.jpg";
 import Equipe11Souvenirs from "../assets/carouselHarryPotter3.avif";
 import CustomCarousel from '../components/Carousel';
-import { useNavigate } from "react-router-dom";
 import ChallengeBadge from "../components/ChallengeBadge";
 import BookingPanel from "../components/BookingPanel";
 import GameCardPages from "../components/GameCardPages";
 import GamePlaceholderCard from "../components/GamePlaceholderCard";
 
 const Magie = () => {
-    const navigate = useNavigate();
 
     const carouselImages = [
         { src: Equipe9Souvenirs, alt: "Carousel Image 1" },

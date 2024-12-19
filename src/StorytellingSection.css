@@ -1,16 +1,15 @@
-/* Section de storytelling */
 .storytelling-section {
     background-color: #1A0A53;
     color: #fff;
     text-align: left;
     padding: 40px 20px;
     display: flex;
-    flex-direction: column; /* Aligne les éléments verticalement */
+    flex-direction: column; /*verticalement */
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    width: 80%; /* Limite la largeur à 80% de la page */
-    box-sizing: border-box; /* Inclut les padding dans la largeur */
+    width: 80%; /* largeur à 80% de ma page */
+    box-sizing: border-box; /* padding dans la largeur */
   }
   
   .storytelling-title {
@@ -80,9 +79,8 @@
     background: linear-gradient(to right, #9929BD, #461357, #701E8A );
   }
   
-  /* Media Queries (pour le responsive) */
+
   
-  /* Portable */
   @media screen and (max-width: 768px) {
     .storytelling-section {
       width: 90%; 
@@ -117,7 +115,7 @@
     }
   }
   
-  /* Tablette ou écran moyen */
+  
   @media screen and (max-width: 1024px) {
     .storytelling-section {
       width: 85%; 

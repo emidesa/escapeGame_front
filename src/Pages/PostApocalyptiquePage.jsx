@@ -12,10 +12,11 @@ import GamePlaceholderCard from "../components/GamePlaceholderCard";
 
 const PostApocalyptiquePage = () => {
 
-    const carouselImages = [
-        { src: Equipe3Souvenirs, alt: "Carousel Image 1" },
-        { src: Equipe4Souvenirs, alt: "Carousel Image 2" },
+ const carouselImages = [
+     { src: Equipe3Souvenirs, alt: "Carousel Image 1" },
+     { src: Equipe4Souvenirs, alt: "Carousel Image 2" },
     ];
+
     return <>
         <Banner
             backgroundImage={backgroundImage}
