@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import reservationService from '../../services/reservationService';
-import "../App.css";
 import gameService from '../../services/GameService';
+import "../App.css";
 
 const ReservationPage = () => {
   const navigate = useNavigate();
@@ -40,11 +40,10 @@ const ReservationPage = () => {
   const fetchEscapeGames = async () => {
     try {
       const response = await gameService.getAllGames();
-      if (response.data && Array.isArray(response.data) && response.data.length > 0) {
+      if (response.data && Array.isArray(response.data)) {
         setEscapeGames(response.data);
-        setFormData((prev) => ({ ...prev, escapeGameId: response.data[0].id_escapeGame }));
+        setFormData((prev) => ({ ...prev, escapeGameId: response.data[0]?.id_escapeGame || '' }));
       } else {
-        console.error("Aucun escape game n'a été trouvé");
         setEscapeGames([]);
       }
     } catch (error) {
@@ -57,21 +56,13 @@ const ReservationPage = () => {
   const startDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
   const handlePrevMonth = () => {
-    if (currentMonth === 0) {
-      setCurrentMonth(11);
-      setCurrentYear((prevYear) => prevYear - 1);
-    } else {
-      setCurrentMonth((prevMonth) => prevMonth - 1);
-    }
+    setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
+    setCurrentYear((prev) => (currentMonth === 0 ? prev - 1 : prev));
   };
 
   const handleNextMonth = () => {
-    if (currentMonth === 11) {
-      setCurrentMonth(0);
-      setCurrentYear((prevYear) => prevYear + 1);
-    } else {
-      setCurrentMonth((prevMonth) => prevMonth + 1);
-    }
+    setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
+    setCurrentYear((prev) => (currentMonth === 11 ? prev + 1 : prev));
   };
 
   const handleSlotSelect = (day) => {
@@ -79,9 +70,7 @@ const ReservationPage = () => {
     setSelectedTime('');
   };
 
-  const handleTimeSelect = (e) => {
-    setSelectedTime(e.target.value);
-  };
+  const handleTimeSelect = (e) => setSelectedTime(e.target.value);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -90,84 +79,72 @@ const ReservationPage = () => {
     });
   };
 
-  const createReservation = async (reservationDate, reservationTime, numberOfPlayers, totalPrice, escapeGameId) => {
-    const customerId = localStorage.getItem('userId'); // Assurez-vous que 'userId' est bien stocké dans localStorage lors de la connexion
-
+  const createReservation = async (reservationData) => {
+    const customerId = localStorage.getItem('userId');
     if (!customerId) {
-      console.error('Aucun utilisateur connecté. Impossible de créer une réservation.');
+      console.error('Aucun utilisateur connecté');
       return;
     }
-
-    const reservationData = {
-      reservation_date: reservationDate,
-      reservation_time: reservationTime,
-      number_of_players: numberOfPlayers,
-      total_price: totalPrice,
-      status: 'confirmed',
-      customer_id: customerId, // Utiliser l'ID de l'utilisateur ici
-      escape_game_id: escapeGameId
-    };
-
     try {
-      const response = await reservationService.addReservation(reservationData); // Vous pouvez également remplacer cela par axios si vous préférez
-      console.log('Réservation créée avec succès:', response.data);
+      const response = await reservationService.addReservation({ ...reservationData, customer_id: customerId });
+      console.log('Réservation réussie:', response.data);
       return response;
     } catch (error) {
       console.error('Erreur lors de la création de la réservation:', error);
-      throw error;
     }
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.escapeGameId) {
-      alert('Veuillez sélectionner un escape game.');
+
+    if (!formData.escapeGameId || !selectedSlot || !selectedTime || !formData.name || !formData.email || !formData.phone) {
+      alert('Veuillez remplir tous les champs requis.');
       return;
     }
 
     const selectedEscapeGame = escapeGames.find(game => game.id_escapeGame === parseInt(formData.escapeGameId));
-
     if (!selectedEscapeGame) {
-      alert('L\'escape game sélectionné n\'est pas valide. Veuillez réessayer.');
+      alert('Escape game sélectionné invalide.');
       return;
     }
 
-    const total_price = selectedEscapeGame.price_per_person * formData.numberOfPlayers;
-
-    if (selectedSlot && selectedTime && formData.name && formData.email && formData.phone) {
-      try {
-        await createReservation(selectedSlot, selectedTime, formData.numberOfPlayers, total_price, formData.escapeGameId);
-        alert('Réservation confirmée !');
-        setFormData({ name: '', email: '', phone: '', numberOfPlayers: 1, escapeGameId: escapeGames[0]?.id_escapeGame || '' });
-        setSelectedSlot(null);
-        setSelectedTime('');
-        fetchReservations(); // Rafraîchir les réservations
-        navigate('/profil'); // Redirect to profile page after successful reservation
-      } catch (error) {
-        alert('Créneau horaire indisponible. Veuillez réessayer.');
-      }
-    } else {
-      alert('Veuillez remplir tous les champs requis.');
+    const totalPrice = selectedEscapeGame.price_per_person * formData.numberOfPlayers;
+    try {
+      await createReservation({
+        reservation_date: selectedSlot,
+        reservation_time: selectedTime,
+        number_of_players: formData.numberOfPlayers,
+        total_price: totalPrice,
+        escape_game_id: formData.escapeGameId,
+      });
+      alert('Réservation confirmée !');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        numberOfPlayers: 1,
+        escapeGameId: escapeGames[0]?.id_escapeGame || '',
+      });
+      setSelectedSlot(null);
+      setSelectedTime('');
+      fetchReservations();
+      navigate('/profil');
+    } catch (error) {
+      alert('Erreur de réservation, veuillez réessayer.');
     }
   };
 
   const isSlotAvailable = (day, time) => {
-    const date = new Date(currentYear, currentMonth, day);
-    const formattedDate = date.toISOString().split('T')[0]; // Format YYYY-MM-DD
-  
-    return !reservations.some(
-      (r) => r.reservation_date === formattedDate && r.reservation_time === time
-    );
+    const formattedDate = new Date(currentYear, currentMonth, day).toISOString().split('T')[0];
+    return !reservations.some((r) => r.reservation_date === formattedDate && r.reservation_time === time);
   };
 
   const renderDays = () => {
     const totalDays = daysInMonth(currentMonth, currentYear);
     const days = [];
-
     for (let i = 0; i < startDayOfMonth; i++) {
       days.push(<div key={`empty-${i}`} className="calendar-cell empty-cell"></div>);
     }
-
     for (let day = 1; day <= totalDays; day++) {
       const isSelected = selectedSlot === `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
       const hasAvailableSlot = availableTimes.some(time => isSlotAvailable(day, time));
@@ -181,7 +158,6 @@ const ReservationPage = () => {
         </div>
       );
     }
-
     return days;
   };
 
@@ -215,15 +191,11 @@ const ReservationPage = () => {
               required
             >
               <option value="">Sélectionnez un escape game</option>
-              {escapeGames.length > 0 ? (
-                escapeGames.map((game) => (
-                  <option key={game.id_escapeGame} value={game.id_escapeGame}>
-                    {game.name}
-                  </option>
-                ))
-              ) : (
-                <option disabled>Aucun escape game disponible</option>
-              )}
+              {escapeGames.map((game) => (
+                <option key={game.id_escapeGame} value={game.id_escapeGame}>
+                  {game.name}
+                </option>
+              ))}
             </select>
           </div>
           <div>
@@ -237,14 +209,12 @@ const ReservationPage = () => {
               <option value="" disabled>Sélectionnez un créneau</option>
               {availableTimes.map((time, idx) => (
                 <option
-                key={idx}
-                value={time}
-                disabled={!isSlotAvailable(new Date(selectedSlot).getDate(), time)}
-
-                className={!isSlotAvailable(selectedSlot.split('-')[2], time) ? 'option-disabled' : ''}
-              >
-                {time} {!isSlotAvailable(selectedSlot.split('-')[2], time) ? '(Indisponible)' : ''}
-              </option>
+                  key={idx}
+                  value={time}
+                  disabled={!isSlotAvailable(new Date(selectedSlot).getDate(), time)}
+                >
+                  {time} {!isSlotAvailable(new Date(selectedSlot).getDate(), time) && '(Indisponible)'}
+                </option>
               ))}
             </select>
           </div>
@@ -290,4 +260,3 @@ const ReservationPage = () => {
 };
 
 export default ReservationPage;
-
