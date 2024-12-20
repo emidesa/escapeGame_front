@@ -21,7 +21,7 @@ const LolPage  = () => {
           {/* Banner Section */}
           <section style={{ textAlign: 'center', marginBottom: '50px' }}>
             <img
-              src="src\assets\Lol2.png" // Remplacez par le chemin de l'image de la bannière
+              src="src\assets\Lol2.png" 
               alt="La Légende de l'Arène"
               style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }}
             />
@@ -61,7 +61,7 @@ espérer émerger en tant que légende de League of Legends. Êtes-vous prêt à
             {/* Image Section */}
             <div style={{ flexShrink: 0 }}>
               <img
-                src="src\assets\Lol1.jpg" // Remplacez par le chemin de l'image
+                src="src\assets\Lol1.jpg" 
                 alt="Detective scene"
                 style={{ borderRadius: '40px', width: '350px', height: '350px', boxShadow: '30px 30px 10px -15px rgba(0, 0, 0, 0.25)', position: 'relative', top: '-100px'}}
               /><h3>Tarifs 180€ à domicile</h3>

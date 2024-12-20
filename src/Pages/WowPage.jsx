@@ -21,7 +21,7 @@ const WowPage  = () => {
       {/* Banner Section */}
       <section style={{ textAlign: 'center', marginBottom: '50px' }}>
         <img
-          src="src\assets\wow.webp" // Remplacez par le chemin de l'image de la bannière
+          src="src\assets\wow.webp" 
           alt=" La Quête d'Azeroth"
           style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }}
         />

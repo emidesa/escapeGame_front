@@ -21,7 +21,7 @@ const MysterePage = () => {
           {/* Banner Section */}
           <section style={{ textAlign: 'center', marginBottom: '50px' }}>
             <img
-              src="src\assets\mystere1.jpg" // Remplacez par le chemin de l'image de la bannière
+              src="src\assets\mystere1.jpg" 
               alt="Énigmes de l'Absence"
               style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }}
             />
@@ -62,7 +62,7 @@ finale. Le temps presse, chaque minute compte. Serezvous capable de percer les s
             {/* Image Section */}
             <div style={{ flexShrink: 0 }}>
               <img
-                src="src\assets\mystere.jfif" // Remplacez par le chemin de l'image
+                src="src\assets\mystere.jfif" 
                 alt="Detective scene"
                 style={{ borderRadius: '40px', width: '350px', height: '350px', boxShadow: '30px 30px 10px -15px rgba(0, 0, 0, 0.25)', position: 'relative', top: '-100px'}}
               /><h3>Tarifs 180€ à domicile</h3>
